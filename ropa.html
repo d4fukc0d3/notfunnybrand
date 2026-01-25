@@ -1,142 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8L6CFVR1Q"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-V8L6CFVR1Q');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style/style-products.css">
-  <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
   <title>NOTFUNNYSHIRTS</title>
-
   <style>
-    /* Styles for the new GIF section */
-    .gif-section {
-      position: relative;
-      margin-top: 20px;
-      overflow: hidden;
+    @font-face {
+    font-family: "MyFont";
+    src: url("fonts/Kristina.Bold.otf");
+  }
+
+  @font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/pixter-architekt-bold.ttf') format('truetype');
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .gif-section img {
-      width: 50%;
-      display: block;
-      text-align: center;
-      justify-content: center;
-      margin: 0 auto;
-    }
-    .animated-text {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translateX(100%) translateY(-50%);
-      white-space: nowrap;
-      font-size: 2em;
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f8f5f5 0%, #fffcfc 100%);
       color: #fff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      margin: 30px 0;
+      letter-spacing: 3px;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: "MyFont", sans-serif;
+      color: black;
+    }
+
+    .coverflow-container {
+      position: relative;
+      height: 600px;
+      margin: 60px 0;
+      perspective: 1200px;
+    }
+
+    .coverflow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-card {
+      position: absolute;
+      width: 350px;
+      height: 450px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product-info {
+      position: absolute;
+      bottom: -80px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .product-card.active .product-info {
+      opacity: 1;
+    }
+
+    .product-info h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      font-family: 'MyCustomFont', sans-serif;
+      color: black;
+
+    }
+
+    .product-info p {
+      font-size: 1.2em;
+      color: #4ade80;
       font-weight: bold;
-      animation: slide 10s linear infinite;
-      }
+      font-family: 'MyCustomFont', sans-serif;
+      color: black;
 
-      @keyframes slide {
-      0% { transform: translateX(100%) translateY(-50%); }
-      100% { transform: translateX(-100%) translateY(-50%); }
-      }
+    }
 
+    .indicator {
+      text-align: center;
+      margin-top: 120px;
+      font-size: 1.1em;
+      color: rgba(255, 255, 255, 0.6);
+    }
   </style>
 </head>
-
-
-<body> 
-
-
+<body>
   <div class="container">
-    <a href="index.html" style="color: inherit; text-decoration: none;"><h1>NOTFUNNYSHIRTS</h1></a>
+    <h1>NOTFUNNYSHIRTS</h1>
     
-    <div class="products-grid">
-
-    <div class="product" style="cursor: pointer;">
-      <div class="img-container">
-        <img src="shirts-images/2girlonecaguama.png" alt="Hoodie" class="default-img" loading="lazy" />
-        <img src="shirts-images/2girlsonecaguamabackog.png" alt="Classic T-Shirt Hover" class="hover-img" />
-      </div>
-      <div class="info">
-        <h2>2 m0rr4s 1 kaguama</h2>
-        <p>$777</p>
-      </div>
+    <div class="coverflow-container">
+      <div class="coverflow" id="coverflow"></div>
     </div>
 
-
-    <div class="product" style="cursor: pointer;">
-      <div class="img-container">
-        <img src="shirts-images/JR.png" alt="Hoodie" class="default-img" loading="lazy" />
-        <img src="shirts-images/JRback.png" alt="Classic T-Shirt Hover" class="hover-img" />
-      </div>
-      <div class="info">
-        <h2>J. R. "Bob" Dobbs</h2>
-        <p>$777</p>
-      </div>
+    <div class="indicator">
+      <span id="currentIndex">1</span> / <span id="totalProducts">5</span>
     </div>
+  </div>
 
+  <script>
+    const products = [
+      {
+        front: 'shirts-images/2girlonecaguama.png',
+        back: 'shirts-images/2girlsonecaguamabackog.png',
+        title: '2 m0rr4s 1 kaguama',
+        price: '$777'
+      },
+      {
+        front: 'shirts-images/JR.png',
+        back: 'shirts-images/JRback.png',
+        title: 'J. R. "Bob" Dobbs',
+        price: '$777'
+      },
+      {
+        front: 'shirts-images/notnegodsilexia.png',
+        back: 'shirts-images/notnegodsilexiaback.png',
+        title: 'no tnego dsilexia',
+        price: '$777'
+      },
+      {
+        front: 'shirts-images/notfunny69.png',
+        back: 'shirts-images/chatarchivadoback.png',
+        title: 'Rated +69 Notfunny 0r1g1n4ls',
+        price: '$777'
+      },
+      {
+        front: 'shirts-images/seponchanllantasfrente.png',
+        back: 'shirts-images/chatarchivadoback.png',
+        title: 'sE p0NCH4An N4l6as',
+        price: '$777'
+      }
+    ];
 
-    <div class="product" style="cursor: pointer;">
-      <div class="img-container">
-        <img src="shirts-images/notnegodsilexia.png" alt="Hoodie" class="default-img" loading="lazy" />
-        <img src="shirts-images/notnegodsilexiaback.png" alt="Classic T-Shirt Hover" class="hover-img" />
-      </div>
-      <div class="info">
-        <h2>no tnego dsilexia</h2>
-        <p>$777</p>
-      </div>
-    </div>
+    let currentIndex = 0;
+    let showingBack = {};
+    let touchStartX = 0;
+    let touchEndX = 0;
 
+    const coverflow = document.getElementById('coverflow');
+    const currentIndexEl = document.getElementById('currentIndex');
+    const totalProductsEl = document.getElementById('totalProducts');
 
-    <div class="product" style="cursor: pointer;">
-      <div class="img-container">
-        <img src="shirts-images/notfunny69.png" alt="Hoodie" class="default-img" loading="lazy" />
-        <img src="shirts-images/chatarchivadoback.png" alt="Classic T-Shirt Hover" class="hover-img" />
-      </div>
-      <div class="info">
-        <h2>Rated +69 Notfunny 0r1g1n4ls</h2>
-        <p>$777</p>
-      </div>
-    </div>
+    totalProductsEl.textContent = products.length;
 
+    function createProductCards() {
+      coverflow.innerHTML = '';
+      products.forEach((product, i) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.front}" alt="${product.title}">
+          <div class="product-info">
+            <h2>${product.title}</h2>
+            <p>${product.price}</p>
+          </div>
+        `;
+        
+        card.addEventListener('click', () => {
+          if (i === currentIndex) {
+            const img = card.querySelector('img');
+            showingBack[i] = !showingBack[i];
+            img.src = showingBack[i] ? product.back : product.front;
+          } else {
+            currentIndex = i;
+            updateCoverflow();
+          }
+        });
+        
+        coverflow.appendChild(card);
+      });
+    }
 
-    <div class="product" style="cursor: pointer;">
-      <div class="img-container">
-        <img src="shirts-images/seponchanllantasfrente.png" alt="Hoodie" class="default-img" loading="lazy" />
-        <img src="shirts-images/chatarchivadoback.png" alt="Classic T-Shirt Hover" class="hover-img" />
-      </div>
-      <div class="info">
-        <h2>sE p0NCH4An N4l6as</h2>
-        <p>$777</p>
-      </div>
-    </div>
+    function updateCoverflow() {
+      const cards = document.querySelectorAll('.product-card');
+      const total = cards.length;
+      
+      cards.forEach((card, i) => {
+        card.classList.remove('active');
+        
+        const offset = i - currentIndex;
+        const absOffset = Math.abs(offset);
+        
+        if (absOffset === 0) {
+          card.classList.add('active');
+          card.style.transform = 'translateX(0) translateZ(0) rotateY(0deg) scale(1.2)';
+          card.style.zIndex = 100;
+          card.style.opacity = '1';
+          card.style.filter = 'brightness(1)';
+        } else if (absOffset === 1) {
+          const direction = offset > 0 ? 1 : -1;
+          card.style.transform = `translateX(${direction * 280}px) translateZ(-200px) rotateY(${-direction * 45}deg) scale(0.8)`;
+          card.style.zIndex = 50;
+          card.style.opacity = '0.7';
+          card.style.filter = 'brightness(0.6)';
+        } else if (absOffset === 2) {
+          const direction = offset > 0 ? 1 : -1;
+          card.style.transform = `translateX(${direction * 480}px) translateZ(-400px) rotateY(${-direction * 60}deg) scale(0.6)`;
+          card.style.zIndex = 25;
+          card.style.opacity = '0.4';
+          card.style.filter = 'brightness(0.4)';
+        } else {
+          const direction = offset > 0 ? 1 : -1;
+          card.style.transform = `translateX(${direction * 650}px) translateZ(-600px) rotateY(${-direction * 70}deg) scale(0.4)`;
+          card.style.zIndex = 0;
+          card.style.opacity = '0.2';
+          card.style.filter = 'brightness(0.3)';
+        }
+      });
+      
+      currentIndexEl.textContent = currentIndex + 1;
+    }
 
+    // Touch and swipe handlers
+    coverflow.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
 
+    coverflow.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
 
-      <!-- Add more product cards as needed -->
-    </div>
-    
-    <!-- New GIF section with animated text 
-    <div class="gif-section">
-      <img src="shirts/cooking.gif" alt="Cocinando Playera">
-      <div class="animated-text">
-        cocinando playeras por favor sea paciente
-      </div>
-    </div>
-    -->
-    
-  </div>  
-  <script src="script/script-tab.js"></script>
-  <script src="script/script-info.js"></script>
-  <a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-<script async src="//static.getclicky.com/101480613.js"></script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif" /></p></noscript>
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swiped left, go next
+          currentIndex = (currentIndex + 1) % products.length;
+        } else {
+          // Swiped right, go previous
+          currentIndex = (currentIndex - 1 + products.length) % products.length;
+        }
+        updateCoverflow();
+      }
+    }
+
+    // Arrow key navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + products.length) % products.length;
+        updateCoverflow();
+      } else if (e.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % products.length;
+        updateCoverflow();
+      }
+    });
+
+    createProductCards();
+    updateCoverflow();
+  </script>
 </body>
 </html>

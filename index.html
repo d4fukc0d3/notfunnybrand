@@ -1,106 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8L6CFVR1Q"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-V8L6CFVR1Q');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTFUNNYBRAND</title>
-    <link rel="stylesheet" href="style/style-index.css">
-    <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
-
+  <meta charset="UTF-8">
+  <title>Simple Website</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
+<!-- Hamburger Menu -->
+<div class="menu-btn" onclick="toggleMenu()">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
 
-        <div class="slider-container">
-          <button class="arrow arrow-left" onclick="moveSlide(-1)">&#9665;</button>
-          <div class="slider">
-              <section class="section section-1">
-                  <div class="content">
-                    <a href="ropa.html">
-                      <h1>NOTFUNNYSHIRTS</h1>
-                      </a>
-                  </div>
-              </section>
+<!-- T-Shirt Icon Button -->
+<a href="ropa.html">
+<div class="tshirt-btn" onclick="toggleMenu()">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
+  </svg>
+</div>
+</a>
 
-              <section class="section section-2">
-                  <div class="content">
-                    <a href="ropa.html">
-                      <h1 style="color: rgb(0, 110, 255);">NOTFUNNYCAP</h1>
-                      </a>
-                  </div>
-              </section>
+<!-- Side Menu -->
+ 
+<div class="side-menu" id="menu">
+</div>
 
-              <section class="section section-3">
-                  <div class="content">
-                    <a href="things.html">
-                      <h1 style="color: rgb(255, 0, 200);">NOTFUNNYTHINGS</h1>
-                      </a>
-                  </div>
-              </section>
+<!-- Center Text -->
+<div class="center-text">
+  NotFunnyBrand
+</div>
 
-
-          </div>
-          <button class="arrow arrow-right" onclick="moveSlide(1)">&#9655;</button>
-        </div>
-
-
-    <footer class="footer">
-        <div class="footer-title">
-          <h2>NOTFUNNYBRAND</h2>
-        </div>
-        <div class="footer-content">
-          <div class="footer-links">
-            <a href="https://x.com/notfunnyboy69">X</a>
-            <a href="https://www.instagram.com/notfunnybrand/">INSTAGRAM</a>
-            <a href="https://www.instagram.com/notfunnybrand/">CONTACT</a>
-          </div>
-          <div class="footer-subscribe">
-            <form action="https://submit-form.com/cAqicOus6">
-              <input type="email" id="email" name="email" placeholder="Email*" />
-              <button type="submit">→</button>
-            </form>
-            <p>
-              Regístrate para recibir actualizaciones sobre nuevas colecciones, noticias y lanzamientos de NOTFUNNYBRAND.
-            </p>
-          </div>
-        </div>
-      </footer>
-      
-      
-
-      <a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-      <script async src="//static.getclicky.com/101480613.js"></script>
-      <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif" /></p></noscript>
-</body>
-
-<script src="script/script-tab.js"></script>
 <script>
-  let currentIndex = 0;
-  const totalSlides = document.querySelectorAll('.section').length;
-  const slider = document.querySelector('.slider');
-
-  function moveSlide(direction) {
-      currentIndex += direction;
-
-      if (currentIndex < 0) {
-          currentIndex = totalSlides - 1;
-      } else if (currentIndex >= totalSlides) {
-          currentIndex = 0;
-      }
-
-      slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
+  function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+    document.body.classList.toggle("menu-open");
   }
 
-</script>
+    // Bouncing DVD Logo Effect
+  const logo = document.querySelector('.center-text');
 
+  // Position and velocity
+  let x = Math.random() * (window.innerWidth - logo.offsetWidth);
+  let y = Math.random() * (window.innerHeight - logo.offsetHeight);
+  let vx = 2; // Horizontal velocity
+  let vy = 2; // Vertical velocity
+
+  // Color palette for when logo hits corners/edges
+  const colors = [
+    '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', 
+    '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2'
+  ];
+  let colorIndex = 0;
+
+  function getRandomColor() {
+    colorIndex = (colorIndex + 1) % colors.length;
+    return colors[colorIndex];
+  }
+
+  function animate() {
+    // Update position
+    x += vx;
+    y += vy;
+    
+    // Get current dimensions
+    const logoWidth = logo.offsetWidth;
+    const logoHeight = logo.offsetHeight;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    
+    // Check for collisions and bounce
+    if (x + logoWidth >= windowWidth || x <= 0) {
+      vx = -vx;
+      x = x <= 0 ? 0 : windowWidth - logoWidth;
+      logo.style.color = getRandomColor();
+    }
+    
+    if (y + logoHeight >= windowHeight || y <= 0) {
+      vy = -vy;
+      y = y <= 0 ? 0 : windowHeight - logoHeight;
+      logo.style.color = getRandomColor();
+    }
+    
+    // Apply new position
+    logo.style.left = x + 'px';
+    logo.style.top = y + 'px';
+    
+    requestAnimationFrame(animate);
+  }
+
+  // Set initial color
+  logo.style.color = colors[0];
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    const logoWidth = logo.offsetWidth;
+    const logoHeight = logo.offsetHeight;
+    
+    // Keep logo within bounds after resize
+    if (x + logoWidth > window.innerWidth) {
+      x = window.innerWidth - logoWidth;
+    }
+    if (y + logoHeight > window.innerHeight) {
+      y = window.innerHeight - logoHeight;
+    }
+  });
+
+  // Start animation
+  animate();
+  </script>
+
+</body>
 </html>

@@ -1,0 +1,138 @@
+/* ============================= */
+/* MOBILE BASE STYLES */
+/* ============================= */
+@font-face {
+    font-family: "MyFont";
+    src: url("fonts/Kristina.Bold.otf");
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    height: 100vh;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  /* Bouncing DVD Logo Effect */
+  .center-text {
+    font-family: "MyFont", sans-serif;
+    position: absolute;
+    font-size: 2rem;
+    font-weight: bold;
+    user-select: none;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  /* T-Shirt Icon Button */
+  .tshirt-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 1000;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .tshirt-btn:hover {
+    transform: scale(1.1) rotate(360deg);
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .tshirt-btn svg {
+    width: 100%;
+    height: 100%;
+    color: black;
+    transition: color 0.3s ease;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Float Animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Shake Animation */
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0) scale(1.1);
+    }
+    25% {
+      transform: translateX(-5px) scale(1.1);
+    }
+    75% {
+      transform: translateX(5px) scale(1.1);
+    }
+  }
+
+  /* Pulse Animation */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  
+
+  
+  /* ============================= */
+  /* DESKTOP STYLES */
+  /* ============================= */
+  
+  @media (min-width: 768px) {
+  
+    body {
+      background: #f2f2f2;
+    }
+  
+    .center-text {
+      font-size: 3rem;
+    }
+  
+    .tshirt-btn {
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+    }
+  
+    .side-menu {
+      width: 250px;
+      left: -250px;
+      padding: 80px 25px;
+    }
+  
+    .side-menu.active {
+      left: 0;
+    }
+  
+    .side-menu h2 {
+      font-size: 1.7rem;
+    }
+  
+    .side-menu li {
+      font-size: 1.1rem;
+    }
+  }
