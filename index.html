@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Website</title>
+  <title></title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - NOTFUNNYSHIRTS</title>
+  <link rel="icon" href="images/logo_tab.png" type="image/png">
 </head>
 
 <body>
+
+<!-- Background GIF Container -->
+<div class="gif-background" id="gifBackground"></div>
 
 <!-- Hamburger Menu -->
 <div class="menu-btn" onclick="toggleMenu()">
@@ -26,7 +31,6 @@
 </a>
 
 <!-- Side Menu -->
- 
 <div class="side-menu" id="menu">
 </div>
 
@@ -36,21 +40,147 @@
 </div>
 
 <script>
+  // Title emoticon animation
+  const emoticons = [
+      '¯\\_(ツ)_/¯',
+      '乁(✧ ͜ʖ ✧)ㄏ',
+      '乁[ᓀ˵ ▾˵ᓂ]ㄏ',
+      '乁( . ര ʖ̯ ര . )ㄏ',
+      '¯_༼ᕤ◕◕༽ᕤ_/¯',
+      '¯_( ͡° ͜ʖ ͡°)/¯',
+      '¯_( ͡ᵔ ͜ʖ ͡ᵔ )/¯',
+      '乁( ◔̯◔ )ㄏ',
+      '¯_༼ •́ ͜ʖ •̀ ༽/¯',
+      '乁[ᓀ˵▾˵ᓂ]ㄏ',
+      '¯_(⊙︿⊙)/¯',
+      '¯_( ͡ᵔ ͜ʖ ͡ᵔ )/¯',
+      '🎩¯_( ◕‿◕ )/¯',
+      '¯_༼ᴼل͜ᴼ༽/¯',
+      '乁( •̀ ω •́ )ㄏ',
+      '¯_། ¯˵ ͠° ل͜ ͠° །/¯',
+      '乁( ◕◕ )ㄏ',
+      '乁( . ༎ຶ ۝ ༎ຶ )ㄏ',
+      '乁༼☯‿☯✿༽ㄏ',
+      '乁(♥♥ )ㄏ',
+      '乁། ˵ ͠° ͟ل͜ ͠° ˵ །ㄏ',
+      '乁༼ •̀_•́ ༽ㄏ',
+      '¯_㋡/¯',
+      '¯_╏ ͟ʖ╏/¯',
+      '¯_༼ ಠ_ಠ ༽/¯',
+      '¯_། ¯˵ ͡• ͜ʖ ͡• །/¯',
+      '乁( ◕ ᴥ ◕ )ㄏ',
+      '乁༼ಠ‿ಠ✿༽ㄏ',
+      '¯_༼⌐■ل͜■༽/¯',
+      '乁། ˵ ◕ – ◕ ˵ །ㄏ',
+      '乁( ••)ㄏ',
+      '¯_(ヅ)/¯',
+      '乁( ͡⚆ ͜ʖ ͡⚆)ㄏ',
+      '乁( ͠ᵔ ͟ل͜ ͡ᵔ)ㄏ',
+      '乁( ◔ ౪ ◔ )ㄏ',
+      '¯_( ◉◉ )/¯',
+      '¯_( ͡❛ ͜ʖ ͡❛)/¯',
+      'ᕦ(ツ)ᕤ',
+      '¯_( ͠° ͟ʖ °͠ )/¯',
+      '¯_། ¯˵ ͡° ͜ʖ ͡° །/¯',
+      '乁། ¯˵ ͡° ͜ʖ ͡° །ㄏ',
+      '¯(°o)/¯',
+      '¯_༽✧ل͜✧༼/¯',
+      '乁༼◕◕༽ㄏ',
+      '╮(╯╰)╭',
+      '¯_( ͠° ͟ʖ ͠° )/¯',
+      '¯_༽ ಥ Д ಥ ༼/¯',
+      '¯_༼ ºل͟º ༽/¯',
+      '¯_( ◔̯◔ )/¯',
+      '¯༼ ಥ ‿ ಥ ༽/¯',
+      '乁( ͠° ͟ل͜ ͡°)ㄏ',
+      '¯_༼ ºل͟º༽/¯',
+      '乁( ◉◞౪◟◉)ㄏ',
+      '乁༼ಠ益ಠ༽ㄏ',
+      '¯_༼ ͡❛ ͜ʖ ͡❛ ༽/¯',
+      '乁( •• )ㄏ',
+      '乁( ͠ಠ ͟ʖ ͠ಠ)ㄏ',
+      '乁( ͡❛ ͜ʖ ͡❛)ㄏ',
+      '乁(⌐■■)ㄏ',
+      '乁( ◉◉ )ㄏ',
+      '¯_ȌᴥȌ/¯',
+      '乁། ◕ ◔ ౪ ◔ ◕ །ㄏ',
+      '乁[ ◕ ᴥ ◕ ]ㄏ',
+      '乁( ˙ ω˙乁)',
+      '乁(⊙◎)ㄏ',
+      '乁( ͠° ͟ʖ °͠ )ㄏ',
+      '¯_༼ ಥ ‿ ಥ ༽/¯',
+      '乁༼ •̀۝•́ ༽ㄏ',
+      '¯_༼ ି ͜ʖ ି ༽_/¯',
+      '乁( ͡️ ͜ʖ ͡️)ㄏ',
+      '乁༼✿◕╭╮◕✿༽ㄏ'
+    ];
+
+    let currentEmoticonIndex = 0;
+    const baseTitle = '';
+
+    function updateTitle() {
+      document.title = `${emoticons[currentEmoticonIndex]} ${baseTitle}`;
+      currentEmoticonIndex = (currentEmoticonIndex + 1) % emoticons.length;
+    }
+
+    // Start the title animation
+    setInterval(updateTitle, 1000);
+    updateTitle(); // Initial call
+
   function toggleMenu() {
     document.getElementById("menu").classList.toggle("active");
     document.body.classList.toggle("menu-open");
   }
 
-    // Bouncing DVD Logo Effect
+  // GIF Background Rotation
+  const gifUrls = [
+    'gifs/0d5c98c686e322b58611c7568dcaf0ab.gif',
+    'gifs/1c5446da3adc96f1eb0b66542412893f.gif',
+    'gifs/3d08ba6026099860df4a13cbba47a748.gif',
+    'gifs/83dadc4c45b219efba1aedb2ffd4fe76.gif',
+    'gifs/1356e5ff229a2270742a7b83cac46e83.gif',
+    'gifs/5340bd78187d42b45963f76d639e2bbf.gif',
+    'gifs/a4e5c5355cad9bca81b15d6dbfb67c98.gif',
+    'gifs/ac1c3cd335a16097a91f176e27c43e65.gif',
+    'gifs/ca42209a8819b7be98920a962383f8dd.gif',
+    'gifs/dd35dd1efcd851fb479e7179a363915e.gif'
+  ];
+
+  let currentGifIndex = 0;
+  const gifBackground = document.getElementById('gifBackground');
+
+  function getGifDuration(url) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = function() {
+        resolve(3000);
+      };
+      img.src = url;
+    });
+  }
+
+  async function changeGif() {
+    const currentUrl = gifUrls[currentGifIndex];
+    gifBackground.style.backgroundImage = `url('${currentUrl}')`;
+    
+    const duration = await getGifDuration(currentUrl);
+    
+    setTimeout(() => {
+      currentGifIndex = (currentGifIndex + 1) % gifUrls.length;
+      changeGif();
+    }, duration);
+  }
+
+  changeGif();
+
+  // Bouncing DVD Logo Effect
   const logo = document.querySelector('.center-text');
 
-  // Position and velocity
   let x = Math.random() * (window.innerWidth - logo.offsetWidth);
   let y = Math.random() * (window.innerHeight - logo.offsetHeight);
-  let vx = 2; // Horizontal velocity
-  let vy = 2; // Vertical velocity
+  let vx = 5;
+  let vy = 5;
 
-  // Color palette for when logo hits corners/edges
   const colors = [
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', 
     '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2'
@@ -63,17 +193,14 @@
   }
 
   function animate() {
-    // Update position
     x += vx;
     y += vy;
     
-    // Get current dimensions
     const logoWidth = logo.offsetWidth;
     const logoHeight = logo.offsetHeight;
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     
-    // Check for collisions and bounce
     if (x + logoWidth >= windowWidth || x <= 0) {
       vx = -vx;
       x = x <= 0 ? 0 : windowWidth - logoWidth;
@@ -86,22 +213,18 @@
       logo.style.color = getRandomColor();
     }
     
-    // Apply new position
     logo.style.left = x + 'px';
     logo.style.top = y + 'px';
     
     requestAnimationFrame(animate);
   }
 
-  // Set initial color
   logo.style.color = colors[0];
 
-  // Handle window resize
   window.addEventListener('resize', () => {
     const logoWidth = logo.offsetWidth;
     const logoHeight = logo.offsetHeight;
     
-    // Keep logo within bounds after resize
     if (x + logoWidth > window.innerWidth) {
       x = window.innerWidth - logoWidth;
     }
@@ -110,9 +233,38 @@
     }
   });
 
-  // Start animation
   animate();
-  </script>
+</script>
+
+<style>
+  .gif-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+
+  /* Rainbow animation for t-shirt icon */
+  .tshirt-btn svg {
+    animation: rainbow 3s linear infinite;
+  }
+
+  @keyframes rainbow {
+    0% { stroke: #ff0000; }
+    14% { stroke: #ff7f00; }
+    28% { stroke: #ffff00; }
+    42% { stroke: #00ff00; }
+    57% { stroke: #0000ff; }
+    71% { stroke: #4b0082; }
+    85% { stroke: #9400d3; }
+    100% { stroke: #ff0000; }
+  }
+</style>
 
 </body>
 </html>

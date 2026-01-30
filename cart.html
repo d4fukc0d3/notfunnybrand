@@ -1,106 +1,897 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8L6CFVR1Q"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8L6CFVR1Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V8L6CFVR1Q');
+  </script>
   
-      gtag('config', 'G-V8L6CFVR1Q');
-    </script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFS</title>
-    <link rel="icon" href="images/logo_tab.png" type="image/png">
-    <link rel="stylesheet" href="style/style4.css">
-    <link rel="stylesheet" href="style/style5.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
-</head>
-<body>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Cart - NOTFUNNYSHIRTS</title>
+  <link rel="icon" href="images/logo_tab.png" type="image/png">
+  
   <style>
     @font-face {
-      font-family: 'Computer';
-      src: url('../style/Computer.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
+      font-family: "MyFont";
+      src: url("fonts/Kristina.Bold.otf");
+    }
+    @font-face {
+      font-family: "MyFont2";
+      src: url("fonts/pixter-architekt-bold.ttf");
     }
 
-    h1{
-      font-family: 'Computer';
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "MyFont2", Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #000;
+      overflow-x: hidden;
+      -webkit-user-select: none;
+      user-select: none;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    h1 {
       text-align: center;
-      font-size: 50px;
+      font-size: 5em;
+      margin: 30px 0;
+      letter-spacing: normal;
+      cursor: pointer;
+      font-weight: normal;
+      font-family: "MyFont", sans-serif;
+      color: #000000;
+      text-decoration: none;
     }
 
+    h1 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Notification Styles */
+    .notification-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .notification-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .notification-box {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .notification-overlay.show .notification-box {
+      transform: scale(1);
+    }
+
+    .notification-icon {
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+
+    .notification-title {
+      font-family: "MyFont2", sans-serif;
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .notification-message {
+      font-family: "MyFont2", sans-serif;
+      font-size: 1.1em;
+      margin-bottom: 25px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .notification-steps {
+      text-align: left;
+      margin: 20px 0;
+      padding: 20px;
+      background: #f7f7f7;
+      border-radius: 10px;
+    }
+
+    .notification-step {
+      margin-bottom: 10px;
+      font-family: "MyFont2", sans-serif;
+      font-size: 1em;
+      color: #333;
+    }
+
+    .notification-step strong {
+      color: #000;
+    }
+
+    .notification-button {
+      background-color: #000;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 8px;
+      font-family: "MyFont2", sans-serif;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .notification-button:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+
+    /* Main Grid Layout */
+    .cart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 40px 0;
+    }
+
+    /* Cart Items Section */
+    .cart-items-section {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      font-family: "MyFont2", sans-serif;
+      font-size: 2em;
+      margin-bottom: 25px;
+      color: #000;
+      text-align: center;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: #f7f7f7;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      align-items: center;
+    }
+
+    .cart-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .cart-item-image {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .cart-item-image:hover {
+      transform: scale(1.05);
+    }
+
+    .cart-item-details {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cart-item-title {
+      font-family: "MyFont2", sans-serif;
+      font-size: 1.3em;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .cart-item-price {
+      font-family: "MyFont2", sans-serif;
+      font-size: 1.5em;
+      background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #4b0082,
+        #9400d3
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 3s linear infinite;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .remove-btn {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: "MyFont2", sans-serif;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    .remove-btn:hover {
+      background-color: #cc0000;
+      transform: scale(1.05);
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+      font-size: 1.2em;
+    }
+
+    .continue-shopping {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      background-color: #000;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-family: "MyFont2", sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .continue-shopping:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+
+    /* Checkout Form Section */
+    .checkout-section {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-family: "MyFont2", sans-serif;
+      font-size: 0.95em;
+      color: #333;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-family: "MyFont2", sans-serif;
+      font-size: 1em;
+      transition: all 0.3s ease;
+      background: #f7f7f7;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus {
+      outline: none;
+      border-color: #000;
+      background: #fff;
+    }
+
+    input[type="text"][readonly] {
+      background: #e0e0e0;
+      cursor: not-allowed;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .checkbox-group label {
+      margin: 0;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 15px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: "MyFont2", sans-serif;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #333;
+      transform: scale(1.02);
+    }
+
+    input[type="submit"]:active {
+      transform: scale(0.98);
+    }
+
+    .cart-summary {
+      background: #f7f7f7;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-family: "MyFont2", sans-serif;
+      font-size: 1.1em;
+    }
+
+    .summary-row.total {
+      font-size: 1.5em;
+      font-weight: bold;
+      padding-top: 15px;
+      border-top: 2px solid #ddd;
+      margin-top: 15px;
+    }
+
+    .payment-button {
+      width: 100%;
+      padding: 15px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: "MyFont2", sans-serif;
+      font-size: 1.3em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+
+    .payment-button:hover {
+      background-color: #333;
+      transform: scale(1.02);
+    }
+
+    .payment-button:active {
+      transform: scale(0.98);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .cart-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-section {
+        position: relative;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 4em;
+        margin: 20px 0;
+      }
+
+      .cart-item {
+        grid-template-columns: 100px 1fr auto;
+        gap: 15px;
+        padding: 15px;
+      }
+
+      .cart-item-image {
+        width: 100px;
+        height: 100px;
+      }
+
+      .section-title {
+        font-size: 1.5em;
+      }
+
+      .cart-items-section,
+      .checkout-section {
+        padding: 20px;
+      }
+
+      .notification-box {
+        padding: 30px 20px;
+      }
+
+      .notification-title {
+        font-size: 1.5em;
+      }
+
+      .notification-message {
+        font-size: 1em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 3em;
+        margin: 15px 0;
+      }
+
+      .cart-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .cart-item-image {
+        width: 100%;
+        height: 200px;
+        margin: 0 auto;
+      }
+
+      .remove-btn {
+        width: 100%;
+      }
+
+      .section-title {
+        font-size: 1.3em;
+      }
+
+      .cart-items-section,
+      .checkout-section {
+        padding: 15px;
+      }
+
+      .notification-box {
+        padding: 25px 15px;
+      }
+
+      .notification-icon {
+        font-size: 3em;
+      }
+
+      .notification-title {
+        font-size: 1.3em;
+      }
+
+      .notification-message {
+        font-size: 0.95em;
+      }
+
+      .notification-button {
+        padding: 12px 30px;
+        font-size: 1em;
+      }
+    }
   </style>
-
-    <a href="ropa.html" style="color: inherit; text-decoration: none;"><h1>NOTFUNNYSHIRTS</h1></a>
-  
-    <div class="grid-container-tshirt2">
-
-        <div id="cart-items" class="grid-item-tshirt-2">
-            <!-- Products will be dynamically added here -->
-        </div>
-
-        <div class="grid-item-tshirt">  
-          <form action="https://submit-form.com/cAqicOus6">
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required><br><br>
-                
-                <input type="checkbox" id="emailUpdates" name="emailUpdates" value="Envíame correos con noticias y ofertas">
-                <label for="emailUpdates">Envíame correos con noticias y ofertas</label><br><br>
-              
-                <label for="delivery">Entrega</label><br>
-                <input type="text" id="delivery" name="delivery" value="EXCLUSIVO PARA MÉXICO" readonly><br><br>
-              
-                <label for="firstName">Nombre</label>
-                <input type="text" id="firstName" name="firstName" placeholder="Escribe tu nombre" required><br><br>
-              
-                <label for="lastName">Apellido</label>
-                <input type="text" id="lastName" name="lastName" placeholder="Escribe tu apellido" required><br><br>
-              
-                <label for="address">Dirección</label>
-                <input type="text" id="address" name="address" placeholder="Escribe tu dirección" required><br><br>
-              
-                <label for="apartment">Departamento, suite, etc. (opcional)</label>
-                <input type="text" id="apartment" name="apartment" placeholder="Opcional"><br><br>
-              
-                <label for="postalCode">Código postal</label>
-                <input type="text" id="postalCode" name="postalCode" placeholder="Escribe tu código postal" required><br><br>
-              
-                <label for="city">Ciudad</label>
-                <input type="text" id="city" name="city" placeholder="Escribe tu Estado" required><br><br>
-              
-                <label for="phone">Teléfono</label>
-                <input type="tel" id="phone" name="phone" placeholder="Escribe tu número de teléfono" required><br><br>
-
-                <label for="instagram">Instagram</label>
-                <input type="text" id="instagram" name="insta" placeholder="Escribe tu usuario de Instagram" required><br><br>
-
-                <input type="hidden" name="localStorageData" id="localStorageData">
-                                                        
-                <input type="submit" value="ENVIAR INFORMACIÓN">
-          </form>
-        </div>
+</head>
+<body>
+  <!-- Notification Overlay -->
+  <div class="notification-overlay" id="notificationOverlay">
+    <div class="notification-box">
+      <div class="notification-icon">⚠️</div>
+      <h2 class="notification-title">¡IMPORTANTE!</h2>
+      <p class="notification-message">
+        Después de enviar el formulario, debes hacer clic en el botón de pago y completar el proceso de pago.
+      </p>
+      <div class="notification-steps">
+        <div class="notification-step"><strong>1.</strong> Completa el formulario</div>
+        <div class="notification-step"><strong>2.</strong> Haz clic en "COMPLETAR PEDIDO"</div>
+        <div class="notification-step"><strong>3.</strong> Haz clic en el botón de PAGO</div>
+        <div class="notification-step"><strong>4.</strong> Completa el proceso de pago</div>
+      </div>
+      <button class="notification-button" onclick="closeNotification()">Entendido</button>
     </div>
+  </div>
 
+  <div class="container">
+    <h1><a href="ropa.html">NOTFUNNYSHIRTS</a></h1>
 
-  
-<script src="script/get-cart.js"></script>
-<script>
+    <div class="cart-grid">
+      <!-- Cart Items Section -->
+      <div class="cart-items-section">
+        <h2 class="section-title">Tu Carrito</h2>
+        <div id="cart-items">
+          <!-- Cart items will be dynamically loaded here -->
+        </div>
+        
+        <div class="cart-summary" id="cart-summary">
+          <!-- Summary will be dynamically loaded here -->
+        </div>
+        
+        <a href="#" class="payment-button" id="payment-button">Realizar pago</a>
+      </div>
 
+      <!-- Checkout Form Section -->
+      <div class="checkout-section">
+        <h2 class="section-title">Checkout</h2>
 
+        <form action="https://submit-form.com/cAqicOus6" id="checkout-form">
+          <div>
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+          </div>
 
+          <div class="checkbox-group">
+            <input type="checkbox" id="emailUpdates" name="emailUpdates" value="Envíame correos con noticias y ofertas">
+            <label for="emailUpdates">Envíame correos con noticias y ofertas</label>
+          </div>
 
-</script>
-<a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-<script async src="//static.getclicky.com/101480613.js"></script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif" /></p></noscript>
+          <div>
+            <label for="delivery">Entrega</label>
+            <input type="text" id="delivery" name="delivery" value="EXCLUSIVO PARA MÉXICO" readonly>
+          </div>
+
+          <div>
+            <label for="firstName">Nombre</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Escribe tu nombre" required>
+          </div>
+
+          <div>
+            <label for="lastName">Apellido</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Escribe tu apellido" required>
+          </div>
+
+          <div>
+            <label for="address">Dirección</label>
+            <input type="text" id="address" name="address" placeholder="Escribe tu dirección" required>
+          </div>
+
+          <div>
+            <label for="apartment">Departamento, suite, etc. (opcional)</label>
+            <input type="text" id="apartment" name="apartment" placeholder="Opcional">
+          </div>
+
+          <div>
+            <label for="postalCode">Código postal</label>
+            <input type="text" id="postalCode" name="postalCode" placeholder="Escribe tu código postal" required>
+          </div>
+
+          <div>
+            <label for="city">Estado</label>
+            <input type="text" id="city" name="city" placeholder="Escribe tu Estado" required>
+          </div>
+
+          <div>
+            <label for="phone">Teléfono</label>
+            <input type="tel" id="phone" name="phone" placeholder="Escribe tu número de teléfono" required>
+          </div>
+
+          <div>
+            <label for="instagram">Instagram</label>
+            <input type="text" id="instagram" name="insta" placeholder="Escribe tu usuario de Instagram" required>
+          </div>
+
+          <input type="hidden" name="localStorageData" id="localStorageData">
+          
+          <input type="submit" value="COMPLETAR PEDIDO">
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Title emoticon animation
+    const emoticons = [
+      '¯\\_(ツ)_/¯',
+      '乁(✧ ͜ʖ ✧)ㄏ',
+      '乁[ᓀ˵ ▾˵ᓂ]ㄏ',
+      '乁( . ര ʖ̯ ര . )ㄏ',
+      '¯_༼ᕤ◕◕༽ᕤ_/¯',
+      '¯_( ͡° ͜ʖ ͡°)/¯',
+      '¯_( ͡ᵔ ͜ʖ ͡ᵔ )/¯',
+      '乁( ◔̯◔ )ㄏ',
+      '¯_༼ •́ ͜ʖ •̀ ༽/¯',
+      '乁[ᓀ˵▾˵ᓂ]ㄏ',
+      '¯_(⊙︿⊙)/¯',
+      '¯_( ͡ᵔ ͜ʖ ͡ᵔ )/¯',
+      '🎩¯_( ◕‿◕ )/¯',
+      '¯_༼ᴼل͜ᴼ༽/¯',
+      '乁( •̀ ω •́ )ㄏ',
+      '¯_། ¯˵ ͠° ل͜ ͠° །/¯',
+      '乁( ◕◕ )ㄏ',
+      '乁( . ༎ຶ ۝ ༎ຶ )ㄏ',
+      '乁༼☯‿☯✿༽ㄏ',
+      '乁(♥♥ )ㄏ',
+      '乁། ˵ ͠° ͟ل͜ ͠° ˵ །ㄏ',
+      '乁༼ •̀_•́ ༽ㄏ',
+      '¯_㋡/¯',
+      '¯_╏ ͟ʖ╏/¯',
+      '¯_༼ ಠ_ಠ ༽/¯',
+      '¯_། ¯˵ ͡• ͜ʖ ͡• །/¯',
+      '乁( ◕ ᴥ ◕ )ㄏ',
+      '乁༼ಠ‿ಠ✿༽ㄏ',
+      '¯_༼⌐■ل͜■༽/¯',
+      '乁། ˵ ◕ – ◕ ˵ །ㄏ',
+      '乁( ••)ㄏ',
+      '¯_(ヅ)/¯',
+      '乁( ͡⚆ ͜ʖ ͡⚆)ㄏ',
+      '乁( ͠ᵔ ͟ل͜ ͡ᵔ)ㄏ',
+      '乁( ◔ ౪ ◔ )ㄏ',
+      '¯_( ◉◉ )/¯',
+      '¯_( ͡❛ ͜ʖ ͡❛)/¯',
+      'ᕦ(ツ)ᕤ',
+      '¯_( ͠° ͟ʖ °͠ )/¯',
+      '¯_། ¯˵ ͡° ͜ʖ ͡° །/¯',
+      '乁། ¯˵ ͡° ͜ʖ ͡° །ㄏ',
+      '¯(°o)/¯',
+      '¯_༽✧ل͜✧༼/¯',
+      '乁༼◕◕༽ㄏ',
+      '╮(╯╰)╭',
+      '¯_( ͠° ͟ʖ ͠° )/¯',
+      '¯_༽ ಥ Д ಥ ༼/¯',
+      '¯_༼ ºل͟º ༽/¯',
+      '¯_( ◔̯◔ )/¯',
+      '¯༼ ಥ ‿ ಥ ༽/¯',
+      '乁( ͠° ͟ل͜ ͡°)ㄏ',
+      '¯_༼ ºل͟º༽/¯',
+      '乁( ◉◞౪◟◉)ㄏ',
+      '乁༼ಠ益ಠ༽ㄏ',
+      '¯_༼ ͡❛ ͜ʖ ͡❛ ༽/¯',
+      '乁( •• )ㄏ',
+      '乁( ͠ಠ ͟ʖ ͠ಠ)ㄏ',
+      '乁( ͡❛ ͜ʖ ͡❛)ㄏ',
+      '乁(⌐■■)ㄏ',
+      '乁( ◉◉ )ㄏ',
+      '¯_ȌᴥȌ/¯',
+      '乁། ◕ ◔ ౪ ◔ ◕ །ㄏ',
+      '乁[ ◕ ᴥ ◕ ]ㄏ',
+      '乁( ˙ ω˙乁)',
+      '乁(⊙◎)ㄏ',
+      '乁( ͠° ͟ʖ °͠ )ㄏ',
+      '¯_༼ ಥ ‿ ಥ ༽/¯',
+      '乁༼ •̀۝•́ ༽ㄏ',
+      '¯_༼ ି ͜ʖ ି ༽_/¯',
+      '乁( ͡️ ͜ʖ ͡️)ㄏ',
+      '乁༼✿◕╭╮◕✿༽ㄏ'
+    ];
+
+    let currentEmoticonIndex = 0;
+    const baseTitle = '';
+
+    function updateTitle() {
+      document.title = `${emoticons[currentEmoticonIndex]} ${baseTitle}`;
+      currentEmoticonIndex = (currentEmoticonIndex + 1) % emoticons.length;
+    }
+
+    // Start the title animation
+    setInterval(updateTitle, 1000);
+    updateTitle(); // Initial call
+
+    // Notification functions
+    function showNotification() {
+      const overlay = document.getElementById('notificationOverlay');
+      overlay.classList.add('show');
+    }
+
+    function closeNotification() {
+      const overlay = document.getElementById('notificationOverlay');
+      overlay.classList.remove('show');
+    }
+
+    // Show notification on page load
+    window.addEventListener('load', function() {
+      setTimeout(showNotification, 500);
+    });
+
+    // Cart management functions
+    function getCart() {
+      const cart = localStorage.getItem('cart');
+      return cart ? JSON.parse(cart) : [];
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function removeFromCart(productId) {
+      const cart = getCart();
+      // Find the index of the first instance of this product ID
+      const indexToRemove = cart.findIndex(item => item.id === productId);
+      
+      if (indexToRemove !== -1) {
+        // Remove only one instance
+        cart.splice(indexToRemove, 1);
+        saveCart(cart);
+        loadCart();
+      }
+    }
+
+    function toggleImage(img, product) {
+      if (img.dataset.showing === 'front') {
+        img.src = product.back;
+        img.dataset.showing = 'back';
+      } else {
+        img.src = product.front;
+        img.dataset.showing = 'front';
+      }
+    }
+
+    function calculateTotal(cart) {
+      // Extract numeric value from price string (e.g., "$777" -> 777)
+      return cart.reduce((total, item) => {
+        const price = parseInt(item.price.replace(/\D/g, ''));
+        return total + price;
+      }, 0);
+    }
+
+    function loadCart() {
+      const cart = getCart();
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartSummaryContainer = document.getElementById('cart-summary');
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="empty-cart">
+            <p>Tu carrito está vacío</p>
+            <a href="ropa.html" class="continue-shopping">Continuar Comprando</a>
+          </div>
+        `;
+        cartSummaryContainer.innerHTML = `
+          <div class="summary-row total">
+            <span>Total:</span>
+            <span>$0</span>
+          </div>
+        `;
+        return;
+      }
+
+      // Group products by ID and count quantities
+      const groupedCart = cart.reduce((acc, item) => {
+        const existing = acc.find(p => p.id === item.id);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          acc.push({ ...item, quantity: 1 });
+        }
+        return acc;
+      }, []);
+
+      // Render cart items with quantities
+      cartItemsContainer.innerHTML = groupedCart.map((item, index) => `
+        <div class="cart-item">
+          <img 
+            src="${item.front}" 
+            alt="${item.title}" 
+            class="cart-item-image"
+            data-showing="front"
+            onclick="toggleImage(this, ${JSON.stringify(item).replace(/"/g, '&quot;')})"
+          >
+          <div class="cart-item-details">
+            <div class="cart-item-title">${item.title} ${item.quantity > 1 ? `<span style="color: #666;">x${item.quantity}</span>` : ''}</div>
+            <div class="cart-item-price">${item.price}</div>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">Eliminar</button>
+        </div>
+      `).join('');
+
+      // Render cart summary
+      const total = calculateTotal(cart);
+      const totalItems = cart.length;
+      const shippingCost = total > 777 ? 0 : 99;
+      const finalTotal = total + shippingCost;
+      
+      let summaryHTML = `
+        <div class="summary-row">
+          <span>Productos:</span>
+          <span>${totalItems}</span>
+        </div>
+      `;
+      
+      if (total > 777) {
+        summaryHTML += `
+          <div class="summary-row" style="color: #00aa00;">
+            <span>Envío:</span>
+            <span>¡GRATIS!</span>
+          </div>
+        `;
+      } else {
+        summaryHTML += `
+          <div class="summary-row">
+            <span>Envío:</span>
+            <span>$${shippingCost}</span>
+          </div>
+        `;
+      }
+      
+      summaryHTML += `
+        <div class="summary-row total">
+          <span>Total:</span>
+          <span>$${finalTotal}</span>
+        </div>
+      `;
+      
+      cartSummaryContainer.innerHTML = summaryHTML;
+    }
+
+    // Form submission handler
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      const cart = getCart();
+      const cartData = JSON.stringify(cart, null, 2);
+      document.getElementById('localStorageData').value = cartData;
+    });
+
+    // Initialize cart on page load
+    loadCart();
+  </script>
+
+  <!-- Analytics -->
+  <a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+  <script async src="//static.getclicky.com/101480613.js"></script>
+  <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif" /></p></noscript>
 </body>
-
 </html>
-

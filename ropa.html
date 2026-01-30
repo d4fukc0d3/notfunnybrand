@@ -13,6 +13,10 @@
     font-family: "MyFont2";
     src: url("fonts/pixter-architekt-bold.ttf");
   }
+  
+  a {
+    text-decoration: none;
+  }
 
     * {
       margin: 0;
@@ -34,6 +38,43 @@
       max-width: 1400px;
       margin: 0 auto;
       padding: 20px;
+      position: relative;
+    }
+
+    /* Cart Icon Styles */
+    .cart-container {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .cart-icon {
+      font-size: 3em;
+      position: relative;
+      transition: transform 0.2s;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: #ff0000;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5em;
+      font-weight: bold;
+      font-family: "MyFont2", sans-serif;
     }
 
     h1 {
@@ -86,12 +127,15 @@
 
     .product-info {
       position: absolute;
-      bottom: -80px;
+      bottom: -140px;
       left: 0;
       right: 0;
       text-align: center;
       opacity: 0;
       transition: opacity 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
     }
 
     .product-card.active .product-info {
@@ -100,21 +144,71 @@
 
     .product-info h2 {
       font-size: 1.5em;
-      margin-bottom: 10px;
       font-family: "MyFont2", sans-serif;
       color: black;
     }
 
     .product-info p {
       font-size: 1.2em;
-      color: #000000;
       font-weight: bold;
       font-family: "MyFont2", sans-serif;
+      background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #4b0082,
+        #9400d3
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 3s linear infinite;
+    }
+
+    @keyframes rainbow {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    .product-icon {
+      font-size: 2em;
+    }
+
+    .add-to-cart-btn {
+      font-size: 1.2em;
+      color: #ffffff;
+      background-color: #000000;
+      font-weight: bold;
+      font-family: "MyFont2", sans-serif;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      margin: 0 auto;
+      max-width: 150px;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #333333;
+      transform: scale(1.05);
+    }
+
+    .add-to-cart-btn:active {
+      transform: scale(0.95);
     }
 
     .indicator {
       text-align: center;
-      margin-top: 120px;
+      margin-top: 160px;
       font-size: 1.1em;
       color: rgba(255, 255, 255, 0.6);
     }
@@ -128,6 +222,15 @@
       
       .coverflow-container {
         height: 500px;
+      }
+
+      .cart-container {
+        top: 20px;
+        right: 20px;
+      }
+
+      .cart-icon {
+        font-size: 2.5em;
       }
     }
 
@@ -151,6 +254,11 @@
         margin: 40px 0;
       }
 
+      .product-info {
+        bottom: -220px;
+        gap: 35px;
+      }
+
       .product-info h2 {
         font-size: 1.2em;
       }
@@ -159,9 +267,33 @@
         font-size: 1em;
       }
 
-      .indicator {
-        margin-top: 100px;
+      .product-icon {
+        font-size: 1.5em;
+      }
+
+      .add-to-cart-btn {
         font-size: 1em;
+        padding: 8px 16px;
+      }
+
+      .indicator {
+        margin-top: 140px;
+        font-size: 1em;
+      }
+
+      .cart-container {
+        top: 15px;
+        right: 15px;
+      }
+
+      .cart-icon {
+        font-size: 2em;
+      }
+
+      .cart-count {
+        width: 25px;
+        height: 25px;
+        font-size: 0.6em;
       }
     }
 
@@ -182,7 +314,8 @@
       }
 
       .product-info {
-        bottom: -60px;
+        bottom: -80px;
+        gap: 5px;
       }
 
       .product-info h2 {
@@ -193,16 +326,51 @@
         font-size: 0.9em;
       }
 
-      .indicator {
-        margin-top: 80px;
+      .product-icon {
+        font-size: 1.3em;
+      }
+
+      .add-to-cart-btn {
         font-size: 0.9em;
+        padding: 6px 12px;
+      }
+
+      .indicator {
+        margin-top: 120px;
+        font-size: 0.9em;
+      }
+
+      .cart-container {
+        top: 10px;
+        right: 10px;
+      }
+
+      .cart-icon {
+        font-size: 1.8em;
+      }
+
+      .cart-count {
+        width: 22px;
+        height: 22px;
+        font-size: 0.6em;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Cart Icon -->
+  <div class="cart-container" onclick="goToCart()">
+    <a href="cart.html">
+    <div class="cart-icon">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
+    </div>
+    </a>
+  </div>
+
   <div class="container">
-    <h1>NOTFUNNYSHIRTS</h1>
+    <a href="index.html"><h1>NOTFUNNYSHIRTS</h1></a>
+    
     
     <div class="coverflow-container">
       <div class="coverflow" id="coverflow"></div>
@@ -216,30 +384,35 @@
   <script>
     const products = [
       {
+        id: 1,
         front: 'shirts-images/2girlonecaguama.png',
         back: 'shirts-images/2girlsonecaguamabackog.png',
         title: '2 m0rr4s 1 kaguama',
         price: '$777'
       },
       {
+        id: 2,
         front: 'shirts-images/JR.png',
         back: 'shirts-images/JRback.png',
         title: 'J. R. "Bob" Dobbs',
         price: '$777'
       },
       {
+        id: 3,
         front: 'shirts-images/notnegodsilexia.png',
         back: 'shirts-images/notnegodsilexiaback.png',
         title: 'no tnego dsilexia',
         price: '$777'
       },
       {
+        id: 4,
         front: 'shirts-images/notfunny69.png',
         back: 'shirts-images/chatarchivadoback.png',
         title: 'Rated +69 Notfunny 0r1g1n4ls',
         price: '$777'
       },
       {
+        id: 5,
         front: 'shirts-images/seponchanllantasfrente.png',
         back: 'shirts-images/chatarchivadoback.png',
         title: 'sE p0NCH4An N4l6as',
@@ -255,8 +428,56 @@
     const coverflow = document.getElementById('coverflow');
     const currentIndexEl = document.getElementById('currentIndex');
     const totalProductsEl = document.getElementById('totalProducts');
+    const cartCountEl = document.getElementById('cartCount');
 
     totalProductsEl.textContent = products.length;
+
+    // Cart Functions
+    function getCart() {
+      const cart = localStorage.getItem('cart');
+      return cart ? JSON.parse(cart) : [];
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function addToCart(product) {
+      const cart = getCart();
+      
+      // Add product with all its information
+      cart.push({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        front: product.front,
+        back: product.back,
+        addedAt: new Date().toISOString()
+      });
+      
+      saveCart(cart);
+      
+      // Visual feedback
+      showAddedToCartFeedback();
+    }
+
+    function updateCartCount() {
+      const cart = getCart();
+      cartCountEl.textContent = cart.length;
+    }
+
+    function showAddedToCartFeedback() {
+      const cartIcon = document.querySelector('.cart-icon');
+      cartIcon.style.transform = 'scale(1.3)';
+      setTimeout(() => {
+        cartIcon.style.transform = 'scale(1)';
+      }, 200);
+    }
+
+    function goToCart() {
+      window.location.href = 'shop.html';
+    }
 
     function createProductCards() {
       coverflow.innerHTML = '';
@@ -268,10 +489,23 @@
           <div class="product-info">
             <h2>${product.title}</h2>
             <p>${product.price}</p>
+            <button class="add-to-cart-btn" data-product-id="${product.id}">+1</button>
           </div>
         `;
         
-        card.addEventListener('click', () => {
+        // Add to cart button click handler
+        const addBtn = card.querySelector('.add-to-cart-btn');
+        addBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          addToCart(product);
+        });
+        
+        card.addEventListener('click', (e) => {
+          // Prevent card click when clicking the add to cart button
+          if (e.target.classList.contains('add-to-cart-btn')) {
+            return;
+          }
+          
           if (i === currentIndex) {
             const img = card.querySelector('img');
             showingBack[i] = !showingBack[i];
@@ -363,8 +597,10 @@
       }
     });
 
+    // Initialize
     createProductCards();
     updateCoverflow();
+    updateCartCount();
   </script>
 </body>
 </html>
