@@ -15,6 +15,10 @@
   <title>NOTFUNNYSTORE - Loading...</title>
   <link rel="stylesheet" href="style/retro90s.css">
   <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000033">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="images/tab-images/ezgif-frame-013.png">
   <style>
     .loading-container {
       display: flex;
@@ -129,6 +133,7 @@
   </div>
 
   <script src="script/retro-effects.js"></script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');</script>
   <script>
     // Typewriter effect
     var text = "Gracias por tu paciencia";
