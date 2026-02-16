@@ -1,80 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTFUNNYSTORE</title>
-    <link rel="stylesheet" href="style/style3.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
-    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet" type="text/css"/>
-</head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8L6CFVR1Q"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
     gtag('config', 'G-V8L6CFVR1Q');
   </script>
-<body>
 
-<div id="content">
-    <div id="typedtext" style="color: rgb(255, 0, 208);"></div>
-
-    <footer>
-        <a href="https://www.instagram.com/notfunnybrand/"><p style="font-size: 10px; color: rgb(41, 31, 154);">@notfunnybrand</p></a>
-    </footer>
-</div>
-
-<script>
-    // set up text to print, each item in array is new line
-    var aText = new Array(
-        "Gracias por tu paciencia"
-    );
-    var iSpeed = 100; // time delay of print out
-    var iIndex = 0; // start printing array at this posision
-    var iArrLength = aText[0].length; // the length of the text array
-    var iScrollAt = 20; // start scrolling up at this many lines
-
-    var iTextPos = 0; // initialise text position
-    var sContents = ''; // initialise contents variable
-    var iRow; // initialise current row
-
-    function typewriter() {
-        sContents = ' ';
-        iRow = Math.max(0, iIndex - iScrollAt);
-        var destination = document.getElementById("typedtext");
-
-        while (iRow < iIndex) {
-            sContents += aText[iRow++] + '<br />';
-        }
-        destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
-        if (iTextPos++ == iArrLength) {
-            iTextPos = 0;
-            iIndex++;
-            if (iIndex != aText.length) {
-                iArrLength = aText[iIndex].length;
-                setTimeout("typewriter()", 500);
-            }
-        } else {
-            setTimeout("typewriter()", iSpeed);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOTFUNNYSTORE - Loading...</title>
+  <link rel="stylesheet" href="style/retro90s.css">
+  <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
+  <style>
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
     }
 
-    // Start the typewriter effect
+    .loading-title {
+      font-family: var(--font-pixel);
+      font-size: clamp(16px, 4vw, 32px);
+      color: var(--neon-pink);
+      text-shadow: 2px 2px var(--neon-blue), 0 0 20px var(--neon-pink);
+      margin-bottom: 30px;
+    }
+
+    .typewriter-text {
+      font-family: var(--font-vt);
+      font-size: clamp(18px, 4vw, 32px);
+      color: var(--neon-green);
+      text-shadow: 0 0 10px var(--neon-green);
+      min-height: 40px;
+    }
+
+    .loading-bar-container {
+      width: 400px;
+      max-width: 80%;
+      height: 28px;
+      border: 3px ridge var(--neon-cyan);
+      background: #000;
+      margin: 30px auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loading-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan), var(--neon-green));
+      background-size: 200% 100%;
+      width: 0%;
+      transition: width 0.3s;
+      box-shadow: 0 0 10px var(--neon-green);
+      animation: bar-shimmer 1s linear infinite;
+    }
+
+    @keyframes bar-shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .loading-percent {
+      font-family: var(--font-vt);
+      font-size: 24px;
+      color: var(--neon-cyan);
+      margin-top: 10px;
+    }
+
+    .retro-ascii {
+      font-family: var(--font-vt);
+      font-size: 14px;
+      color: var(--neon-cyan);
+      opacity: 0.5;
+      margin-top: 30px;
+      white-space: pre;
+      line-height: 1.2;
+    }
+
+    .footer-link {
+      margin-top: 20px;
+    }
+
+    .footer-link a {
+      font-family: var(--font-pixel);
+      font-size: 10px;
+      color: var(--neon-cyan);
+      text-decoration: none;
+    }
+
+    .footer-link a:hover {
+      color: var(--neon-yellow);
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-container">
+    <div class="loading-title">NOTFUNNYBRAND.EXE</div>
+
+    <div class="retro-divider sparkle-divider" style="width:300px;max-width:80%;"></div>
+
+    <div id="typedtext" class="typewriter-text"></div>
+
+    <div class="loading-bar-container">
+      <div class="loading-bar-fill" id="loadingBar"></div>
+    </div>
+    <div class="loading-percent" id="loadingPercent">0%</div>
+
+    <div class="retro-ascii">
+  ___  ___  ___
+ / _ \/ _ \/ _ \
+| | | | | | | | |
+| |_| | |_| | |_|
+ \___/ \___/ \___/
+  NOT  FUNNY BRAND
+    </div>
+
+    <div class="footer-link">
+      <a href="https://www.instagram.com/notfunnybrand/">@notfunnybrand</a>
+    </div>
+  </div>
+
+  <script src="script/retro-effects.js"></script>
+  <script>
+    // Typewriter effect
+    var text = "Gracias por tu paciencia";
+    var charIdx = 0;
+    var destination = document.getElementById("typedtext");
+
+    function typewriter() {
+      if (charIdx <= text.length) {
+        destination.textContent = text.substring(0, charIdx) + "_";
+        charIdx++;
+        setTimeout(typewriter, 100);
+      }
+    }
     typewriter();
 
-    // Redirect to index.html after 5 seconds
-    setTimeout(function() {
-        window.location.href = 'index.html';
-    }, 4000);
-</script>
-<a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-<script async src="//static.getclicky.com/101480613.js"></script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif" /></p></noscript>
+    // Loading bar animation
+    var bar = document.getElementById('loadingBar');
+    var percent = document.getElementById('loadingPercent');
+    var progress = 0;
+
+    function updateBar() {
+      if (progress < 100) {
+        progress += Math.random() * 15 + 2;
+        if (progress > 100) progress = 100;
+        bar.style.width = progress + '%';
+        percent.textContent = Math.floor(progress) + '%';
+        setTimeout(updateBar, 200 + Math.random() * 300);
+      } else {
+        bar.style.width = '100%';
+        percent.textContent = '100% - REDIRECTING...';
+        setTimeout(function() {
+          window.location.href = 'index.html';
+        }, 1000);
+      }
+    }
+    updateBar();
+  </script>
+
+  <!-- Analytics -->
+  <a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0"></a>
+  <script async src="//static.getclicky.com/101480613.js"></script>
+  <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif"></p></noscript>
 </body>
 </html>

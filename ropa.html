@@ -1,99 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>NOTFUNNYSHIRTS</title>
-  <link rel="icon" href="images/logo_tab.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NOTFUNNYSHIRTS - Camisetas</title>
+  <link rel="stylesheet" href="style/retro90s.css">
+  <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
   <style>
     @font-face {
-    font-family: "MyFont";
-    src: url("fonts/Kristina.Bold.otf");
-  }
-  @font-face {
-    font-family: "MyFont2";
-    src: url("fonts/pixter-architekt-bold.ttf");
-  }
-  
-  a {
-    text-decoration: none;
-  }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      color: #fff;
-      overflow-x: hidden;
-      touch-action: pan-y;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 20px;
-      position: relative;
-    }
-
-    /* Cart Icon Styles */
-    .cart-container {
-      position: fixed;
-      top: 30px;
-      right: 30px;
-      z-index: 1000;
-      cursor: pointer;
-    }
-
-    .cart-icon {
-      font-size: 3em;
-      position: relative;
-      transition: transform 0.2s;
-    }
-
-    .cart-icon:hover {
-      transform: scale(1.1);
-    }
-
-    .cart-count {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background-color: #ff0000;
-      color: white;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.5em;
-      font-weight: bold;
-      font-family: "MyFont2", sans-serif;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 5em;
-      margin: 30px 0;
-      letter-spacing: normal;
-      text-decoration: none;
-      cursor: pointer;
-      font-weight: normal;
-      font-family: "MyFont", sans-serif;
-      color: #000000;
+      font-family: "MyFont";
+      src: url("fonts/Kristina.Bold.otf");
     }
 
     .coverflow-container {
       position: relative;
-      height: 600px;
-      margin: 60px 0;
+      height: 550px;
+      margin: 40px 0;
       perspective: 1200px;
       touch-action: pan-y;
     }
@@ -109,8 +31,8 @@
 
     .product-card {
       position: absolute;
-      width: 350px;
-      height: 450px;
+      width: 320px;
+      height: 420px;
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
       transform-style: preserve-3d;
@@ -120,15 +42,20 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 10px;
+      border: 3px ridge var(--neon-cyan);
       pointer-events: none;
       -webkit-user-drag: none;
       -webkit-touch-callout: none;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+
+    .product-card.active img {
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.3);
     }
 
     .product-info {
       position: absolute;
-      bottom: -140px;
+      bottom: -130px;
       left: 0;
       right: 0;
       text-align: center;
@@ -136,7 +63,7 @@
       transition: opacity 0.3s;
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 12px;
     }
 
     .product-card.active .product-info {
@@ -144,74 +71,51 @@
     }
 
     .product-info h2 {
-      font-size: 1.5em;
-      font-family: "MyFont2", sans-serif;
-      color: black;
+      font-family: var(--font-pixel);
+      font-size: 12px;
+      color: var(--neon-cyan);
+      text-shadow: 1px 1px var(--neon-blue);
     }
 
     .product-info p {
-      font-size: 1.2em;
-      font-weight: bold;
-      font-family: "MyFont2", sans-serif;
-      background: linear-gradient(
-        90deg,
-        #ff0000,
-        #ff7f00,
-        #ffff00,
-        #00ff00,
-        #0000ff,
-        #4b0082,
-        #9400d3
-      );
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbow 3s linear infinite;
-    }
-
-    @keyframes rainbow {
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 200% 50%;
-      }
-    }
-
-    .product-icon {
-      font-size: 2em;
+      font-family: var(--font-vt);
+      font-size: 28px;
+      color: var(--neon-green);
+      text-shadow: 0 0 10px var(--neon-green);
+      animation: price-pulse 2s ease-in-out infinite;
     }
 
     .add-to-cart-btn {
-      font-size: 1.2em;
-      color: #ffffff;
-      background-color: #000000;
-      font-weight: bold;
-      font-family: "MyFont2", sans-serif;
-      padding: 10px 20px;
-      border-radius: 5px;
+      font-family: var(--font-pixel);
+      font-size: 10px;
+      color: var(--neon-green);
+      background: linear-gradient(180deg, #444488, #222244);
+      border: 3px outset var(--retro-border-light);
+      padding: 8px 16px;
       cursor: pointer;
-      transition: all 0.3s;
-      border: none;
       margin: 0 auto;
-      max-width: 150px;
+      max-width: 120px;
+      transition: all 0.1s;
+      text-transform: uppercase;
     }
 
     .add-to-cart-btn:hover {
-      background-color: #333333;
-      transform: scale(1.05);
+      border-style: inset;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 8px var(--neon-yellow);
     }
 
     .add-to-cart-btn:active {
-      transform: scale(0.95);
+      transform: translate(1px, 1px);
     }
 
     .indicator {
       text-align: center;
-      margin-top: 160px;
-      font-size: 1.1em;
-      color: rgba(255, 255, 255, 0.6);
+      margin-top: 150px;
+      font-family: var(--font-pixel);
+      font-size: 10px;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 5px var(--neon-cyan);
     }
 
     .swipe-arrow {
@@ -223,89 +127,36 @@
       50% { transform: translateX(20px); opacity: 1; }
     }
 
-    /* Responsive Design */
+    /* Cart nav link */
+    .cart-nav-item {
+      position: relative;
+    }
+
+    .cart-count-badge {
+      background: var(--neon-red);
+      color: white;
+      font-size: 8px;
+      padding: 1px 4px;
+      border-radius: 50%;
+      position: absolute;
+      top: -6px;
+      right: -6px;
+    }
+
+    /* Responsive */
     @media (max-width: 1024px) {
-      .product-card {
-        width: 280px;
-        height: 360px;
-      }
-      
-      .coverflow-container {
-        height: 500px;
-      }
-
-      .cart-container {
-        top: 20px;
-        right: 20px;
-      }
-
-      .cart-icon {
-        font-size: 2.5em;
-      }
+      .product-card { width: 260px; height: 340px; }
+      .coverflow-container { height: 460px; }
     }
 
     @media (max-width: 768px) {
-      h1 {
-        font-size: 4em;
-        margin: 20px 0;
-      }
-
-      .container {
-        padding: 10px;
-      }
-
-      .product-card {
-        width: 220px;
-        height: 280px;
-      }
-
-      .coverflow-container {
-        height: 400px;
-        margin: 40px 0;
-      }
-
-      .product-info {
-        bottom: -220px;
-        gap: 35px;
-      }
-
-      .product-info h2 {
-        font-size: 1.2em;
-      }
-
-      .product-info p {
-        font-size: 1em;
-      }
-
-      .product-icon {
-        font-size: 1.5em;
-      }
-
-      .add-to-cart-btn {
-        font-size: 1em;
-        padding: 8px 16px;
-      }
-
-      .indicator {
-        margin-top: 140px;
-        font-size: 1em;
-      }
-
-      .cart-container {
-        top: 15px;
-        right: 15px;
-      }
-
-      .cart-icon {
-        font-size: 2em;
-      }
-
-      .cart-count {
-        width: 25px;
-        height: 25px;
-        font-size: 0.6em;
-      }
-
+      .product-card { width: 200px; height: 260px; }
+      .coverflow-container { height: 380px; margin: 20px 0; }
+      .product-info { bottom: -100px; gap: 8px; }
+      .product-info h2 { font-size: 10px; }
+      .product-info p { font-size: 22px; }
+      .add-to-cart-btn { font-size: 8px; padding: 6px 12px; }
+      .indicator { margin-top: 120px; font-size: 9px; }
       .swipe-arrow {
         display: block;
         position: absolute;
@@ -313,105 +164,96 @@
         left: 0;
         right: 0;
         text-align: center;
-        font-size: 3em;
-        color: #000;
+        font-size: 2.5em;
+        color: var(--neon-cyan);
         animation: slideRight 1.5s infinite ease-in-out;
         pointer-events: none;
+        text-shadow: 0 0 10px var(--neon-cyan);
       }
     }
 
     @media (max-width: 480px) {
-      h1 {
-        font-size: 3em;
-        margin: 15px 0;
-      }
-
-      .product-card {
-        width: 180px;
-        height: 230px;
-      }
-
-      .coverflow-container {
-        height: 350px;
-        margin: 30px 0;
-      }
-
-      .product-info {
-        bottom: -80px;
-        gap: 5px;
-      }
-
-      .product-info h2 {
-        font-size: 1em;
-      }
-
-      .product-info p {
-        font-size: 0.9em;
-      }
-
-      .product-icon {
-        font-size: 1.3em;
-      }
-
-      .add-to-cart-btn {
-        font-size: 0.9em;
-        padding: 6px 12px;
-      }
-
-      .indicator {
-        margin-top: 120px;
-        font-size: 0.9em;
-      }
-
-      .cart-container {
-        top: 10px;
-        right: 10px;
-      }
-
-      .cart-icon {
-        font-size: 1.8em;
-      }
-
-      .cart-count {
-        width: 22px;
-        height: 22px;
-        font-size: 0.6em;
-      }
-
-      .swipe-arrow {
-        font-size: 2.5em;
-      }
+      .product-card { width: 170px; height: 220px; }
+      .coverflow-container { height: 320px; }
+      .product-info { bottom: -80px; gap: 5px; }
+      .product-info h2 { font-size: 8px; }
+      .product-info p { font-size: 18px; }
+      .indicator { margin-top: 100px; }
     }
   </style>
 </head>
 <body>
-  <!-- Cart Icon -->
-  <div class="cart-container" onclick="goToCart()">
-    <a href="cart.html">
-    <div class="cart-icon">
-      🛒
-      <span class="cart-count" id="cartCount">0</span>
+  <!-- Nav -->
+  <nav class="retro-nav">
+    <a href="index.html" class="nav-logo">NOTFUNNYBRAND</a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="ropa.html" class="active">SHIRTS</a>
+      <a href="gorras.html">CAPS</a>
+      <a href="stickers.html">STICKERS</a>
+      <a href="things.html">THINGS</a>
+      <a href="cart.html" class="cart-nav-item">CART [🛒] <span class="cart-count-badge" id="cartCount">0</span></a>
     </div>
-    </a>
+  </nav>
+
+  <!-- Marquee -->
+  <div class="retro-marquee">
+    <span class="marquee-inner">
+      👕 NEW SHIRTS AVAILABLE!!! 👕 --- ALL SHIRTS $777 MXN --- 🔥 EXCLUSIVE DESIGNS 🔥 --- FREE SHIPPING ON ORDERS OVER $777 --- 👕 CLICK TO FLIP THE SHIRT 👕
+    </span>
   </div>
 
-  <div class="container">
-    <a href="index.html"><h1>NOTFUNNYSHIRTS</h1></a>
-    
-    
+  <div class="retro-container">
+    <!-- Title -->
+    <h1 class="retro-title" style="font-family:'MyFont',var(--font-pixel);cursor:pointer;">
+      <a href="index.html" style="color:inherit;text-decoration:none;">NOTFUNNYSHIRTS</a>
+    </h1>
+
+    <!-- Sparkle divider -->
+    <div class="retro-divider sparkle-divider"></div>
+
+    <!-- Under construction -->
+    <div class="under-construction">
+      <span>🚧 NEW DESIGNS COMING SOON 🚧</span>
+    </div>
+
+    <!-- Coverflow -->
     <div class="coverflow-container">
       <div class="coverflow" id="coverflow"></div>
     </div>
 
-    <div class="swipe-arrow">
-      ➜
-    </div>
+    <div class="swipe-arrow">➜</div>
 
     <div class="indicator">
       <span id="currentIndex">1</span> / <span id="totalProducts">5</span>
     </div>
+
+    <!-- Flame divider -->
+    <div class="retro-divider flame-divider"></div>
+
+    <!-- Visitor counter -->
+    <div class="retro-counter" style="margin-top:30px;">
+      <div class="counter-label">VISITORS:</div>
+      <div class="counter-digits"></div>
+    </div>
   </div>
 
+  <!-- Footer -->
+  <footer class="retro-footer">
+    <div class="retro-divider star-divider"></div>
+    <p>Best viewed in Netscape Navigator 4.0 at 800x600</p>
+    <p style="margin-top:8px;">
+      <span class="retro-badge">HTML 4.0</span>
+      <span class="retro-badge">CSS 2.0</span>
+      <span class="retro-badge">JavaScript</span>
+    </p>
+    <p style="margin-top:8px;">
+      <a href="https://www.instagram.com/notfunnybrand/">@notfunnybrand</a> |
+      Made with 💀 in Mexico 🇲🇽
+    </p>
+  </footer>
+
+  <script src="script/retro-effects.js"></script>
   <script>
     const products = [
       {
@@ -476,8 +318,6 @@
 
     function addToCart(product) {
       const cart = getCart();
-      
-      // Add product with all its information
       cart.push({
         id: product.id,
         title: product.title,
@@ -486,10 +326,7 @@
         back: product.back,
         addedAt: new Date().toISOString()
       });
-      
       saveCart(cart);
-      
-      // Visual feedback
       showAddedToCartFeedback();
     }
 
@@ -499,15 +336,17 @@
     }
 
     function showAddedToCartFeedback() {
-      const cartIcon = document.querySelector('.cart-icon');
-      cartIcon.style.transform = 'scale(1.3)';
-      setTimeout(() => {
-        cartIcon.style.transform = 'scale(1)';
-      }, 200);
-    }
-
-    function goToCart() {
-      window.location.href = 'shop.html';
+      const btn = document.querySelector('.product-card.active .add-to-cart-btn');
+      if (btn) {
+        btn.textContent = 'ADDED!';
+        btn.style.color = '#00ff00';
+        btn.style.textShadow = '0 0 10px #00ff00';
+        setTimeout(() => {
+          btn.textContent = '+1';
+          btn.style.color = '';
+          btn.style.textShadow = '';
+        }, 1000);
+      }
     }
 
     function createProductCards() {
@@ -515,28 +354,22 @@
       products.forEach((product, i) => {
         const card = document.createElement('div');
         card.className = 'product-card';
-        card.innerHTML = `
-          <img src="${product.front}" alt="${product.title}">
-          <div class="product-info">
-            <h2>${product.title}</h2>
-            <p>${product.price}</p>
-            <button class="add-to-cart-btn" data-product-id="${product.id}">+1</button>
-          </div>
-        `;
-        
-        // Add to cart button click handler
+        card.innerHTML =
+          '<img src="' + product.front + '" alt="' + product.title + '">' +
+          '<div class="product-info">' +
+            '<h2>' + product.title + '</h2>' +
+            '<p>' + product.price + '</p>' +
+            '<button class="add-to-cart-btn" data-product-id="' + product.id + '">+1</button>' +
+          '</div>';
+
         const addBtn = card.querySelector('.add-to-cart-btn');
-        addBtn.addEventListener('click', (e) => {
+        addBtn.addEventListener('click', function(e) {
           e.stopPropagation();
           addToCart(product);
         });
-        
-        card.addEventListener('click', (e) => {
-          // Prevent card click when clicking the add to cart button
-          if (e.target.classList.contains('add-to-cart-btn')) {
-            return;
-          }
-          
+
+        card.addEventListener('click', function(e) {
+          if (e.target.classList.contains('add-to-cart-btn')) return;
           if (i === currentIndex) {
             const img = card.querySelector('img');
             showingBack[i] = !showingBack[i];
@@ -546,79 +379,70 @@
             updateCoverflow();
           }
         });
-        
+
         coverflow.appendChild(card);
       });
     }
 
     function updateCoverflow() {
       const cards = document.querySelectorAll('.product-card');
-      const total = cards.length;
-      
       cards.forEach((card, i) => {
         card.classList.remove('active');
-        
         const offset = i - currentIndex;
         const absOffset = Math.abs(offset);
-        
+
         if (absOffset === 0) {
           card.classList.add('active');
-          card.style.transform = 'translateX(0) translateZ(0) rotateY(0deg) scale(1.2)';
+          card.style.transform = 'translateX(0) translateZ(0) rotateY(0deg) scale(1.15)';
           card.style.zIndex = 100;
           card.style.opacity = '1';
           card.style.filter = 'brightness(1)';
         } else if (absOffset === 1) {
-          const direction = offset > 0 ? 1 : -1;
-          card.style.transform = `translateX(${direction * 280}px) translateZ(-200px) rotateY(${-direction * 45}deg) scale(0.8)`;
+          const dir = offset > 0 ? 1 : -1;
+          card.style.transform = 'translateX(' + (dir * 260) + 'px) translateZ(-200px) rotateY(' + (-dir * 45) + 'deg) scale(0.8)';
           card.style.zIndex = 50;
           card.style.opacity = '0.7';
           card.style.filter = 'brightness(0.6)';
         } else if (absOffset === 2) {
-          const direction = offset > 0 ? 1 : -1;
-          card.style.transform = `translateX(${direction * 480}px) translateZ(-400px) rotateY(${-direction * 60}deg) scale(0.6)`;
+          const dir = offset > 0 ? 1 : -1;
+          card.style.transform = 'translateX(' + (dir * 440) + 'px) translateZ(-400px) rotateY(' + (-dir * 60) + 'deg) scale(0.6)';
           card.style.zIndex = 25;
           card.style.opacity = '0.4';
           card.style.filter = 'brightness(0.4)';
         } else {
-          const direction = offset > 0 ? 1 : -1;
-          card.style.transform = `translateX(${direction * 650}px) translateZ(-600px) rotateY(${-direction * 70}deg) scale(0.4)`;
+          const dir = offset > 0 ? 1 : -1;
+          card.style.transform = 'translateX(' + (dir * 600) + 'px) translateZ(-600px) rotateY(' + (-dir * 70) + 'deg) scale(0.4)';
           card.style.zIndex = 0;
           card.style.opacity = '0.2';
           card.style.filter = 'brightness(0.3)';
         }
       });
-      
       currentIndexEl.textContent = currentIndex + 1;
     }
 
-    // Touch and swipe handlers
-    coverflow.addEventListener('touchstart', (e) => {
+    // Touch handlers
+    coverflow.addEventListener('touchstart', function(e) {
       touchStartX = e.changedTouches[0].screenX;
     });
-
-    coverflow.addEventListener('touchend', (e) => {
+    coverflow.addEventListener('touchend', function(e) {
       touchEndX = e.changedTouches[0].screenX;
       handleSwipe();
     });
 
     function handleSwipe() {
-      const swipeThreshold = 50;
       const diff = touchStartX - touchEndX;
-      
-      if (Math.abs(diff) > swipeThreshold) {
+      if (Math.abs(diff) > 50) {
         if (diff > 0) {
-          // Swiped left, go next
           currentIndex = (currentIndex + 1) % products.length;
         } else {
-          // Swiped right, go previous
           currentIndex = (currentIndex - 1 + products.length) % products.length;
         }
         updateCoverflow();
       }
     }
 
-    // Arrow key navigation
-    document.addEventListener('keydown', (e) => {
+    // Arrow keys
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'ArrowLeft') {
         currentIndex = (currentIndex - 1 + products.length) % products.length;
         updateCoverflow();
@@ -628,13 +452,12 @@
       }
     });
 
-    // Initialize
+    // Init
     createProductCards();
     updateCoverflow();
     updateCartCount();
 
-    // Hide swipe arrow after 5 seconds
-    setTimeout(() => {
+    setTimeout(function() {
       const arrow = document.querySelector('.swipe-arrow');
       if (arrow) arrow.style.display = 'none';
     }, 5000);

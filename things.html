@@ -7,28 +7,57 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-V8L6CFVR1Q');
   </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style/style-products.css">
-  <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NOTFUNNYTHINGS</title>
-
-
+  <link rel="stylesheet" href="style/retro90s.css">
+  <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
   <style>
-    /* Styles for the new GIF section */
-    .gif-section {
-      position: relative;
-      margin-top: 20px;
-      overflow: hidden;
-    }
-    .gif-section img {
-      width: 50%;
-      display: block;
-      text-align: center;
+    .coming-soon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
+      min-height: 50vh;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .coming-soon-text {
+      font-family: var(--font-pixel);
+      font-size: clamp(24px, 6vw, 60px);
+      animation: rainbow-text 3s linear infinite;
+      text-shadow: 3px 3px 0 var(--neon-blue), -2px -2px 0 var(--neon-pink);
+      margin-bottom: 20px;
+    }
+    .coming-soon-sub {
+      font-family: var(--font-vt);
+      font-size: clamp(18px, 3vw, 32px);
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px var(--neon-cyan);
+      margin-bottom: 30px;
+    }
+    .coming-soon-emoji {
+      font-size: clamp(40px, 8vw, 80px);
+      animation: float-bounce 2s ease-in-out infinite;
+    }
+    @keyframes float-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .cooking-section {
+      position: relative;
+      margin-top: 30px;
+      overflow: hidden;
+      border: 3px ridge var(--neon-pink);
+      text-align: center;
+    }
+    .cooking-section img {
+      width: 50%;
+      max-width: 400px;
+      display: block;
       margin: 0 auto;
     }
     .animated-text {
@@ -37,69 +66,103 @@
       right: 0;
       transform: translateX(100%) translateY(-50%);
       white-space: nowrap;
-      font-size: 2em;
-      color: #fff;
-      font-weight: bold;
-      animation: slide 10s linear infinite;
-      }
-
-      @keyframes slide {
+      font-family: var(--font-pixel);
+      font-size: 14px;
+      color: var(--neon-pink);
+      text-shadow: 0 0 10px var(--neon-pink);
+      animation: slide-text 10s linear infinite;
+    }
+    @keyframes slide-text {
       0% { transform: translateX(100%) translateY(-50%); }
       100% { transform: translateX(-100%) translateY(-50%); }
-      }
-
+    }
+    @media (max-width: 600px) {
+      .cooking-section img { width: 80%; }
+      .animated-text { font-size: 10px; }
+    }
   </style>
 </head>
-
 <body>
-
-
-
-  <div class="container">
-    <a href="index.html" style="color: inherit; text-decoration: none;"><h1>NOTFUNNYTHINGS</h1></a>
-    <div class="products-grid">
-    
-      <div class="product" style="cursor: pointer;">
-        <div class="img-container">
-          <img src="things/subgenius.png" alt="Hoodie" class="default-img" loading="lazy" />
-          <img src="things/subgeniuslil.png" alt="Classic T-Shirt Hover" class="hover-img" />
-        </div>
-        <div class="info">
-          <h2>Bob Dobbs</h2>
-          <p>$1499</p>
-        </div>
-      </div>
-      
-      <div class="product" style="cursor: pointer;">
-        <div class="img-container">
-          <img src="things/yo.gif" alt="Hoodie" class="default-img" loading="lazy" />
-          <img src="things/yo.gif" alt="Classic T-Shirt Hover" class="hover-img" />
-        </div>
-        <div class="info">
-          <h2>I AM WHO I AM <br> mask off, my life and 50% to charity</h2>
-          <p>999 ₿ or 333,333 XMR</p>
-        </div>
-      </div>
-
-  
-
-
-      <!-- Add more product cards as needed -->
+  <!-- Nav -->
+  <nav class="retro-nav">
+    <a href="index.html" class="nav-logo">NOTFUNNYBRAND</a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="ropa.html">SHIRTS</a>
+      <a href="gorras.html">CAPS</a>
+      <a href="stickers.html">STICKERS</a>
+      <a href="things.html" class="active">THINGS</a>
+      <a href="cart.html">CART [🛒]</a>
     </div>
-    
-    <!-- New GIF section with animated text -->
-    <div class="gif-section">
+  </nav>
+
+  <!-- Marquee -->
+  <div class="retro-marquee">
+    <span class="marquee-inner">
+      🎁 NOTFUNNYTHINGS 🎁 --- EXCLUSIVE WEIRD STUFF --- 💀 ONE OF A KIND ITEMS --- CHECK BACK OFTEN!!! 💀
+    </span>
+  </div>
+
+  <div class="retro-container">
+    <h1 class="retro-title">
+      <a href="index.html" style="color:inherit;text-decoration:none;">NOTFUNNYTHINGS</a>
+    </h1>
+
+    <div class="retro-divider sparkle-divider"></div>
+
+    <div class="retro-panel retro-glow-bg">
+      <div class="retro-panel-title">
+        <span>NOTFUNNYTHINGS</span>
+        <div class="win-buttons">
+          <span class="win-btn">_</span>
+          <span class="win-btn">□</span>
+          <span class="win-btn">X</span>
+        </div>
+      </div>
+
+      <div class="coming-soon-container">
+        <div class="coming-soon-emoji">💀</div>
+        <div class="coming-soon-text blink">COMING SOON!</div>
+        <div class="coming-soon-sub">Weird things are being cooked up</div>
+        <div class="under-construction">
+          <span>🚧 UNDER CONSTRUCTION 🚧</span>
+        </div>
+        <a href="ropa.html" class="retro-btn" style="margin-top:20px;">[ CHECK OUT SHIRTS INSTEAD ]</a>
+      </div>
+    </div>
+
+    <!-- Cooking section -->
+    <div class="cooking-section">
       <img src="shirts/cooking.gif" alt="Cocinando Playera">
       <div class="animated-text">
-        cocinando cosas no chistosas por favor sea paciente
+        cocinando cosas no chistosas por favor sea paciente ~~~
       </div>
     </div>
-    
+
+    <div class="retro-divider flame-divider" style="margin-top:20px;"></div>
+
+    <!-- Visitor counter -->
+    <div class="retro-counter" style="margin-top:20px;">
+      <div class="counter-label">VISITORS:</div>
+      <div class="counter-digits"></div>
+    </div>
   </div>
-  <script src="script/script-tab.js"></script>
-  <script src="script/script-info.js"></script>
-  <a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-<script async src="//static.getclicky.com/101480613.js"></script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif" /></p></noscript>
+
+  <!-- Footer -->
+  <footer class="retro-footer">
+    <div class="retro-divider star-divider"></div>
+    <p>Best viewed in Netscape Navigator 4.0 at 800x600</p>
+    <p style="margin-top:8px;">
+      <a href="https://www.instagram.com/notfunnybrand/">@notfunnybrand</a> |
+      Made with 💀 in Mexico 🇲🇽
+    </p>
+  </footer>
+
+  <script src="script/retro-effects.js"></script>
+
+  <!-- Analytics -->
+  <a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0"></a>
+  <script async src="//static.getclicky.com/101480613.js"></script>
+  <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif"></p></noscript>
 </body>
 </html>

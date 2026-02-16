@@ -1,93 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8L6CFVR1Q"></script>
-    <script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8L6CFVR1Q"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-V8L6CFVR1Q');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTFUNNYBRAND - Products</title>
-    <link rel="stylesheet" href="style/style-products.css">
-    <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .product {
-            position: relative;
-            width: 400px;
-            margin: 20px 0;
-        }
-        .product img {
-            width: 100%;
-            border-radius: 10px;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .product .info {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .product:hover .info {
-            opacity: 1;
-        }
-    </style>
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOTFUNNYSTICKERS</title>
+  <link rel="stylesheet" href="style/retro90s.css">
+  <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
+  <style>
+    .coming-soon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 50vh;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .coming-soon-text {
+      font-family: var(--font-pixel);
+      font-size: clamp(24px, 6vw, 60px);
+      animation: rainbow-text 3s linear infinite;
+      text-shadow: 3px 3px 0 var(--neon-blue), -2px -2px 0 var(--neon-pink);
+      margin-bottom: 20px;
+    }
+    .coming-soon-sub {
+      font-family: var(--font-vt);
+      font-size: clamp(18px, 3vw, 32px);
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px var(--neon-cyan);
+      margin-bottom: 30px;
+    }
+    .coming-soon-emoji {
+      font-size: clamp(40px, 8vw, 80px);
+      animation: float-bounce 2s ease-in-out infinite;
+    }
+    @keyframes float-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Our Products</h1>
-        
-        <div class="product">
-            <img src="images/playera-silk-buenaaaa.png" alt="Classic T-Shirt">
-            <div class="info">
-                <h2>Classic T-Shirt</h2>
-                <p>$25.00</p>
-            </div>
-        </div>
-        
-        <div class="product">
-            <img src="images/playera-silk-buenaaaa.png" alt="Hoodie">
-            <div class="info">
-                <h2>Hoodie</h2>
-                <p>$40.00</p>
-            </div>
-        </div>
-        
-        <div class="product">
-            <img src="images/playera-silk-buenaaaa.png" alt="Cap">
-            <div class="info">
-                <h2>Cap</h2>
-                <p>$15.00</p>
-            </div>
-        </div>
+  <!-- Nav -->
+  <nav class="retro-nav">
+    <a href="index.html" class="nav-logo">NOTFUNNYBRAND</a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="ropa.html">SHIRTS</a>
+      <a href="gorras.html">CAPS</a>
+      <a href="stickers.html" class="active">STICKERS</a>
+      <a href="things.html">THINGS</a>
+      <a href="cart.html">CART [🛒]</a>
     </div>
-    <a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-<script async src="//static.getclicky.com/101480613.js"></script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif" /></p></noscript>
+  </nav>
+
+  <!-- Marquee -->
+  <div class="retro-marquee">
+    <span class="marquee-inner">
+      ✨ NOTFUNNYSTICKERS ✨ --- STICK EM EVERYWHERE --- 🔥 EXCLUSIVE DESIGNS --- COMING SOON!!! 🔥
+    </span>
+  </div>
+
+  <div class="retro-container">
+    <h1 class="retro-title">NOTFUNNYSTICKERS</h1>
+
+    <div class="retro-divider sparkle-divider"></div>
+
+    <div class="retro-panel retro-glow-bg">
+      <div class="retro-panel-title">
+        <span>NOTFUNNYSTICKERS</span>
+        <div class="win-buttons">
+          <span class="win-btn">_</span>
+          <span class="win-btn">□</span>
+          <span class="win-btn">X</span>
+        </div>
+      </div>
+
+      <div class="coming-soon-container">
+        <div class="coming-soon-emoji">✨</div>
+        <div class="coming-soon-text blink">COMING SOON!</div>
+        <div class="coming-soon-sub">Sticky things are on the way</div>
+        <div class="under-construction">
+          <span>🚧 UNDER CONSTRUCTION 🚧</span>
+        </div>
+        <a href="ropa.html" class="retro-btn" style="margin-top:20px;">[ CHECK OUT SHIRTS INSTEAD ]</a>
+      </div>
+    </div>
+
+    <div class="retro-divider flame-divider"></div>
+
+    <!-- Visitor counter -->
+    <div class="retro-counter" style="margin-top:20px;">
+      <div class="counter-label">VISITORS:</div>
+      <div class="counter-digits"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="retro-footer">
+    <div class="retro-divider star-divider"></div>
+    <p>Best viewed in Netscape Navigator 4.0 at 800x600</p>
+    <p style="margin-top:8px;">
+      <a href="https://www.instagram.com/notfunnybrand/">@notfunnybrand</a> |
+      Made with 💀 in Mexico 🇲🇽
+    </p>
+  </footer>
+
+  <script src="script/retro-effects.js"></script>
+
+  <!-- Analytics -->
+  <a title="Web Analytics" href="https://clicky.com/101480613"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0"></a>
+  <script async src="//static.getclicky.com/101480613.js"></script>
+  <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101480613ns.gif"></p></noscript>
 </body>
 </html>

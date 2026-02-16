@@ -1,0 +1,806 @@
+/* ============================================
+   NOTFUNNYBRAND - 90s/2000s RETRO THEME
+   "Best viewed in Netscape Navigator 4.0"
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Comic+Neue:wght@400;700&display=swap');
+
+/* === CSS VARIABLES === */
+:root {
+  --neon-green: #00ff00;
+  --neon-pink: #ff00ff;
+  --neon-cyan: #00ffff;
+  --neon-yellow: #ffff00;
+  --neon-orange: #ff6600;
+  --neon-red: #ff0000;
+  --neon-blue: #0000ff;
+  --retro-purple: #9400d3;
+  --retro-bg: #000033;
+  --retro-bg-alt: #330033;
+  --link-blue: #0000ee;
+  --link-visited: #551a8b;
+  --retro-gray: #c0c0c0;
+  --retro-border-light: #ffffff;
+  --retro-border-dark: #808080;
+  --win95-gray: #c0c0c0;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-vt: 'VT323', monospace;
+  --font-comic: 'Comic Neue', 'Comic Sans MS', cursive;
+}
+
+/* === RESET & BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === STAR BACKGROUND === */
+body {
+  font-family: var(--font-comic);
+  background-color: var(--retro-bg);
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #ffffff 50%, transparent 50%),
+    radial-gradient(1px 1px at 30% 60%, #ffffff 50%, transparent 50%),
+    radial-gradient(1px 1px at 50% 10%, #ffffff 50%, transparent 50%),
+    radial-gradient(1px 1px at 70% 80%, #ffffff 50%, transparent 50%),
+    radial-gradient(1px 1px at 90% 40%, #ffffff 50%, transparent 50%),
+    radial-gradient(2px 2px at 15% 75%, #aaaaff 50%, transparent 50%),
+    radial-gradient(2px 2px at 45% 35%, #aaaaff 50%, transparent 50%),
+    radial-gradient(1px 1px at 65% 55%, #ffffff 50%, transparent 50%),
+    radial-gradient(1px 1px at 85% 15%, #ffffff 50%, transparent 50%),
+    radial-gradient(1px 1px at 25% 45%, #ffffff 50%, transparent 50%),
+    radial-gradient(1px 1px at 55% 85%, #ffffff 50%, transparent 50%),
+    radial-gradient(2px 2px at 75% 25%, #aaaaff 50%, transparent 50%),
+    radial-gradient(1px 1px at 5% 90%, #ffffff 50%, transparent 50%),
+    radial-gradient(1px 1px at 95% 70%, #ffffff 50%, transparent 50%);
+  color: var(--neon-green);
+  overflow-x: hidden;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpolygon points='0,0 0,14 4,10 8,16 10,14 6,8 12,8' fill='white' stroke='black' stroke-width='1'/%3E%3C/svg%3E") 0 0, auto;
+  min-height: 100vh;
+}
+
+/* === SCROLLBAR 90s STYLE === */
+::-webkit-scrollbar { width: 16px; }
+::-webkit-scrollbar-track { background: var(--retro-bg); border-left: 2px solid var(--neon-green); }
+::-webkit-scrollbar-thumb { background: var(--neon-green); border: 2px outset var(--retro-border-light); }
+
+/* === 90s NAVIGATION BAR === */
+.retro-nav {
+  background: linear-gradient(180deg, #000066, #000033);
+  border-bottom: 3px ridge var(--neon-cyan);
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+.retro-nav a {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--neon-cyan);
+  text-decoration: none;
+  padding: 5px 12px;
+  border: 2px outset var(--retro-border-light);
+  background: linear-gradient(180deg, #444488, #222244);
+  transition: all 0.1s;
+  white-space: nowrap;
+}
+
+.retro-nav a:hover {
+  border-style: inset;
+  color: var(--neon-yellow);
+  background: linear-gradient(180deg, #222244, #444488);
+  text-shadow: 0 0 8px var(--neon-yellow);
+}
+
+.retro-nav a.active {
+  border-style: inset;
+  color: var(--neon-green);
+  text-shadow: 0 0 8px var(--neon-green);
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--neon-pink);
+  text-shadow: 2px 2px var(--neon-blue), 0 0 10px var(--neon-pink);
+  animation: rainbow-text 3s linear infinite;
+  text-decoration: none;
+}
+
+/* === MARQUEE BANNER === */
+.retro-marquee {
+  background: var(--neon-yellow);
+  color: var(--neon-red);
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  padding: 6px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 2px solid var(--neon-red);
+  border-bottom: 2px solid var(--neon-red);
+}
+
+.retro-marquee .marquee-inner {
+  display: inline-block;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+/* === BEVELED CONTAINER (Windows 95 style) === */
+.retro-container {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.retro-panel {
+  background: linear-gradient(135deg, #1a0033, #000066, #1a0033);
+  border: 3px ridge var(--neon-cyan);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.retro-panel-title {
+  background: linear-gradient(90deg, #000080, #0000cc, #000080);
+  color: white;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  padding: 4px 8px;
+  margin: -20px -20px 15px -20px;
+  border-bottom: 2px solid var(--neon-cyan);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.retro-panel-title .win-buttons {
+  display: flex;
+  gap: 3px;
+}
+
+.retro-panel-title .win-btn {
+  width: 16px;
+  height: 14px;
+  background: var(--win95-gray);
+  border: 2px outset var(--retro-border-light);
+  font-size: 8px;
+  line-height: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: #000;
+  font-family: var(--font-pixel);
+}
+
+/* === RETRO HEADINGS === */
+.retro-title {
+  font-family: var(--font-pixel);
+  text-align: center;
+  font-size: clamp(20px, 5vw, 48px);
+  margin: 20px 0;
+  animation: rainbow-text 3s linear infinite;
+  text-shadow:
+    3px 3px 0 var(--neon-blue),
+    -1px -1px 0 var(--neon-pink);
+  letter-spacing: 2px;
+}
+
+/* === RAINBOW TEXT ANIMATION === */
+@keyframes rainbow-text {
+  0% { color: #ff0000; }
+  14% { color: #ff7f00; }
+  28% { color: #ffff00; }
+  42% { color: #00ff00; }
+  57% { color: #0000ff; }
+  71% { color: #4b0082; }
+  85% { color: #9400d3; }
+  100% { color: #ff0000; }
+}
+
+.rainbow-text {
+  animation: rainbow-text 3s linear infinite;
+}
+
+/* === BLINKING TEXT === */
+.blink {
+  animation: blink-anim 1s step-end infinite;
+}
+
+@keyframes blink-anim {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* === GLOW TEXT === */
+.glow-text {
+  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
+}
+
+/* === RETRO DIVIDERS === */
+.retro-divider {
+  text-align: center;
+  margin: 15px 0;
+  font-size: 14px;
+  color: var(--neon-yellow);
+  letter-spacing: 3px;
+  overflow: hidden;
+}
+
+.flame-divider::before {
+  content: "~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~";
+  color: var(--neon-orange);
+  text-shadow: 0 0 5px var(--neon-orange);
+}
+
+.star-divider::before {
+  content: "*.+*.+*.+*.+*.+*.+*.+*.+*.+*.+*.+*.+*.+*.+*.+*.+*.+";
+  color: var(--neon-cyan);
+  text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.sparkle-divider::before {
+  content: ".:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.";
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink);
+}
+
+/* === RETRO BUTTONS === */
+.retro-btn {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  padding: 8px 16px;
+  background: linear-gradient(180deg, #444488, #222244);
+  color: var(--neon-green);
+  border: 3px outset var(--retro-border-light);
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.1s;
+}
+
+.retro-btn:hover {
+  border-style: inset;
+  background: linear-gradient(180deg, #222244, #444488);
+  color: var(--neon-yellow);
+  text-shadow: 0 0 8px var(--neon-yellow);
+}
+
+.retro-btn:active {
+  border-style: inset;
+  transform: translate(1px, 1px);
+}
+
+.retro-btn-danger {
+  background: linear-gradient(180deg, #884444, #442222);
+  color: var(--neon-red);
+}
+
+.retro-btn-danger:hover {
+  color: #ff4444;
+}
+
+/* === PRODUCT CARDS (90s style) === */
+.retro-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.retro-product-card {
+  background: linear-gradient(135deg, #1a0033, #000066);
+  border: 3px ridge var(--neon-cyan);
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.retro-product-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan), var(--neon-green), var(--neon-yellow));
+  z-index: -1;
+  animation: border-glow 3s linear infinite;
+  background-size: 400%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.retro-product-card:hover::before {
+  opacity: 1;
+}
+
+.retro-product-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+@keyframes border-glow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.retro-product-card img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border: 2px solid var(--neon-green);
+  image-rendering: auto;
+}
+
+.retro-product-card .product-name {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--neon-cyan);
+  margin: 12px 0 6px;
+  text-shadow: 1px 1px var(--neon-blue);
+}
+
+.retro-product-card .product-price {
+  font-family: var(--font-vt);
+  font-size: 24px;
+  color: var(--neon-green);
+  text-shadow: 0 0 10px var(--neon-green);
+  animation: price-pulse 2s ease-in-out infinite;
+}
+
+@keyframes price-pulse {
+  0%, 100% { text-shadow: 0 0 10px var(--neon-green); }
+  50% { text-shadow: 0 0 20px var(--neon-green), 0 0 40px var(--neon-green); }
+}
+
+/* === VISITOR COUNTER === */
+.retro-counter {
+  text-align: center;
+  margin: 20px auto;
+  font-family: var(--font-vt);
+}
+
+.retro-counter .counter-label {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--neon-yellow);
+  margin-bottom: 5px;
+}
+
+.retro-counter .counter-digits {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.retro-counter .digit {
+  background: #000;
+  color: var(--neon-green);
+  font-family: var(--font-vt);
+  font-size: 28px;
+  padding: 4px 8px;
+  border: 2px inset var(--retro-border-dark);
+  min-width: 24px;
+  text-align: center;
+}
+
+/* === UNDER CONSTRUCTION === */
+.under-construction {
+  text-align: center;
+  padding: 10px;
+  margin: 15px 0;
+}
+
+.under-construction span {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--neon-yellow);
+  animation: blink-anim 1s step-end infinite;
+  vertical-align: middle;
+}
+
+/* === GUESTBOOK / FOOTER === */
+.retro-footer {
+  background: linear-gradient(180deg, #000033, #000011);
+  border-top: 3px ridge var(--neon-cyan);
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.retro-footer p {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--retro-gray);
+  margin: 5px 0;
+}
+
+.retro-footer a {
+  color: var(--neon-cyan);
+  text-decoration: underline;
+}
+
+.retro-footer a:hover {
+  color: var(--neon-yellow);
+}
+
+.retro-badge {
+  display: inline-block;
+  border: 2px outset var(--retro-border-light);
+  padding: 4px 10px;
+  margin: 4px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  background: linear-gradient(180deg, #333366, #111133);
+  color: var(--retro-gray);
+}
+
+/* === CART ICON (retro) === */
+.retro-cart {
+  position: relative;
+  display: inline-block;
+}
+
+.retro-cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--neon-red);
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--neon-yellow);
+  animation: blink-anim 1.5s step-end infinite;
+}
+
+/* === FORM INPUTS (90s style) === */
+.retro-input {
+  width: 100%;
+  padding: 8px 10px;
+  font-family: var(--font-vt);
+  font-size: 18px;
+  background: #000;
+  color: var(--neon-green);
+  border: 2px inset var(--retro-border-dark);
+  outline: none;
+}
+
+.retro-input:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.retro-input::placeholder {
+  color: #336633;
+}
+
+.retro-label {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--neon-cyan);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.retro-checkbox {
+  accent-color: var(--neon-green);
+}
+
+/* === STAR SPARKLE CURSOR TRAIL === */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  font-size: 16px;
+  animation: sparkle-fade 0.8s ease-out forwards;
+}
+
+@keyframes sparkle-fade {
+  0% { opacity: 1; transform: scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: scale(0) rotate(180deg) translateY(-30px); }
+}
+
+/* === COVERFLOW (retro version) === */
+.retro-coverflow-container {
+  position: relative;
+  height: 500px;
+  margin: 40px 0;
+  perspective: 1200px;
+  touch-action: pan-y;
+}
+
+.retro-coverflow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === NOTIFICATION OVERLAY (90s popup style) === */
+.retro-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 51, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+
+.retro-popup-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.retro-popup {
+  background: linear-gradient(135deg, #1a0033, #000066);
+  border: 3px ridge var(--neon-cyan);
+  padding: 0;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+}
+
+.retro-popup-titlebar {
+  background: linear-gradient(90deg, #000080, #0000cc);
+  color: white;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--neon-cyan);
+}
+
+.retro-popup-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.retro-popup-content h2 {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--neon-yellow);
+  margin-bottom: 15px;
+  animation: blink-anim 1s step-end infinite;
+}
+
+.retro-popup-content p {
+  font-family: var(--font-vt);
+  font-size: 18px;
+  color: var(--neon-green);
+  margin-bottom: 15px;
+}
+
+.retro-popup-steps {
+  text-align: left;
+  padding: 15px;
+  background: #000;
+  border: 2px inset var(--retro-border-dark);
+  margin: 15px 0;
+}
+
+.retro-popup-steps div {
+  font-family: var(--font-vt);
+  font-size: 16px;
+  color: var(--neon-cyan);
+  margin-bottom: 8px;
+}
+
+/* === GIF BACKGROUND === */
+.retro-gif-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  .retro-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+  }
+
+  .nav-links {
+    justify-content: center;
+  }
+
+  .retro-nav a {
+    font-size: 8px;
+    padding: 4px 8px;
+  }
+
+  .nav-logo {
+    font-size: 10px;
+  }
+
+  .retro-title {
+    font-size: clamp(16px, 6vw, 32px);
+  }
+
+  .retro-product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .retro-product-card .product-name {
+    font-size: 9px;
+  }
+
+  .retro-container {
+    padding: 10px;
+    margin: 10px auto;
+  }
+
+  .retro-panel {
+    padding: 12px;
+  }
+
+  .retro-panel-title {
+    margin: -12px -12px 10px -12px;
+    font-size: 9px;
+  }
+
+  .retro-marquee {
+    font-size: 9px;
+    padding: 4px 0;
+  }
+
+  .retro-footer p {
+    font-size: 7px;
+  }
+
+  .retro-coverflow-container {
+    height: 350px;
+    margin: 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .retro-nav a {
+    font-size: 7px;
+    padding: 3px 6px;
+  }
+
+  .retro-product-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .retro-coverflow-container {
+    height: 280px;
+  }
+
+  .retro-counter .digit {
+    font-size: 20px;
+    padding: 3px 5px;
+  }
+}
+
+/* === LOADING / TRANSITION PAGE === */
+.retro-loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.retro-loading-bar {
+  width: 300px;
+  max-width: 80%;
+  height: 24px;
+  border: 3px ridge var(--neon-cyan);
+  background: #000;
+  position: relative;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.retro-loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+  width: 0%;
+  animation: loading-fill 4s ease-in-out forwards;
+  box-shadow: 0 0 10px var(--neon-green);
+}
+
+@keyframes loading-fill {
+  0% { width: 0%; }
+  30% { width: 20%; }
+  60% { width: 50%; }
+  80% { width: 75%; }
+  100% { width: 100%; }
+}
+
+.retro-loading-text {
+  font-family: var(--font-vt);
+  font-size: 24px;
+  color: var(--neon-green);
+  margin-top: 10px;
+}
+
+/* === MISC RETRO ELEMENTS === */
+.retro-hr {
+  border: none;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  margin: 20px 0;
+}
+
+.new-badge {
+  display: inline-block;
+  background: var(--neon-red);
+  color: var(--neon-yellow);
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  padding: 2px 6px;
+  animation: blink-anim 1s step-end infinite;
+  vertical-align: super;
+  margin-left: 4px;
+}
+
+.retro-img-border {
+  border: 3px ridge var(--neon-cyan);
+  padding: 4px;
+  background: #000;
+}
+
+/* Animated background glow for special sections */
+.retro-glow-bg {
+  animation: bg-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes bg-glow {
+  0% { box-shadow: inset 0 0 30px rgba(0, 255, 255, 0.1); }
+  100% { box-shadow: inset 0 0 60px rgba(255, 0, 255, 0.2); }
+}
+
+/* === SPARKLE TRAIL JS HELPER === */
+/* The JS will create .sparkle elements on mousemove */
