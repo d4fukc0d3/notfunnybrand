@@ -647,6 +647,7 @@ body {
 
   .nav-links {
     justify-content: center;
+    gap: 4px;
   }
 
   .retro-nav a {
@@ -659,7 +660,7 @@ body {
   }
 
   .retro-title {
-    font-size: clamp(16px, 6vw, 32px);
+    font-size: clamp(16px, 5vw, 32px);
   }
 
   .retro-product-grid {
@@ -699,12 +700,46 @@ body {
     height: 350px;
     margin: 20px 0;
   }
+
+  .retro-popup {
+    width: 95%;
+    max-width: 400px;
+  }
+
+  .retro-popup-content h2 {
+    font-size: 12px;
+  }
+
+  .retro-popup-content p {
+    font-size: 15px;
+  }
+
+  .retro-popup-steps div {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 480px) {
+  .retro-nav {
+    padding: 5px 8px;
+    gap: 4px;
+  }
+
+  .nav-links {
+    gap: 3px;
+  }
+
   .retro-nav a {
-    font-size: 7px;
-    padding: 3px 6px;
+    font-size: 6px;
+    padding: 3px 5px;
+  }
+
+  .nav-logo {
+    font-size: 8px;
+  }
+
+  .retro-title {
+    font-size: clamp(14px, 5vw, 24px);
   }
 
   .retro-product-grid {
@@ -719,6 +754,68 @@ body {
   .retro-counter .digit {
     font-size: 20px;
     padding: 3px 5px;
+  }
+
+  .retro-container {
+    padding: 8px;
+    margin: 5px auto;
+  }
+
+  .retro-panel {
+    padding: 10px;
+  }
+
+  .retro-panel-title {
+    margin: -10px -10px 8px -10px;
+    font-size: 8px;
+  }
+
+  .retro-btn {
+    font-size: 8px;
+    padding: 6px 10px;
+  }
+
+  .retro-popup {
+    width: 95%;
+  }
+
+  .retro-popup-titlebar {
+    font-size: 8px;
+  }
+
+  .retro-popup-content {
+    padding: 12px;
+  }
+
+  .retro-popup-content h2 {
+    font-size: 10px;
+  }
+
+  .retro-popup-content p {
+    font-size: 14px;
+  }
+
+  .retro-popup-steps {
+    padding: 10px;
+  }
+
+  .retro-popup-steps div {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .retro-nav a {
+    font-size: 5px;
+    padding: 2px 4px;
+  }
+
+  .nav-logo {
+    font-size: 7px;
+  }
+
+  .retro-marquee {
+    font-size: 7px;
   }
 }
 

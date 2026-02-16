@@ -6,6 +6,11 @@
   <title>NOTFUNNYBRAND - Welcome to my homepage!!!</title>
   <link rel="stylesheet" href="style/retro90s.css">
   <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000033">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="images/tab-images/ezgif-frame-001.png">
   <style>
     .gif-background {
       position: fixed;
@@ -140,11 +145,29 @@
     }
 
     @media (max-width: 768px) {
+      .center-text { font-size: clamp(1.2rem, 4vw, 2.5rem); }
       .corner-gif { width: 50px; height: 50px; }
       .retro-decoration { font-size: 16px; }
       .tshirt-btn { width: 30px; height: 30px; top: 50px; }
-      .welcome-text { bottom: 80px; }
+      .welcome-text { bottom: 80px; font-size: clamp(12px, 2.5vw, 18px); }
       .status-bar { font-size: 6px; }
+    }
+
+    @media (max-width: 480px) {
+      .center-text { font-size: clamp(0.9rem, 3.5vw, 1.5rem); }
+      .corner-gif { width: 35px; height: 35px; }
+      .corner-gif.top-right { top: 50px; right: 5px; }
+      .retro-decoration { font-size: 12px; opacity: 0.5; }
+      .tshirt-btn { width: 25px; height: 25px; top: 45px; left: 10px; }
+      .welcome-text { bottom: 65px; font-size: clamp(10px, 2.5vw, 14px); }
+      .status-bar { font-size: 5px; padding: 2px 5px; }
+      .status-bar-section { padding: 1px 4px; }
+    }
+
+    @media (max-width: 360px) {
+      .center-text { font-size: 0.8rem; }
+      .welcome-text { font-size: 10px; }
+      .retro-decoration { display: none; }
     }
   </style>
 </head>
@@ -214,6 +237,11 @@
 </div>
 
 <script src="script/retro-effects.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
 <script>
   // GIF Background Rotation
   const gifUrls = [

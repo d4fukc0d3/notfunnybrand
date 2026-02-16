@@ -15,6 +15,10 @@
   <title>Cart - NOTFUNNYSHIRTS</title>
   <link rel="stylesheet" href="style/retro90s.css">
   <link id="dynamic-favicon" rel="icon" type="image/png" href="images/tab-images/ezgif-frame-001.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000033">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="images/tab-images/ezgif-frame-001.png">
   <style>
     .cart-grid {
       display: grid;
@@ -113,7 +117,6 @@
     }
 
     .summary-row.total {
-      font-size: 26px;
       font-family: var(--font-pixel);
       font-size: 14px;
       color: var(--neon-green);
@@ -227,6 +230,22 @@
       .checkout-section { position: relative; top: 0; }
     }
 
+    @media (max-width: 768px) {
+      .cart-item {
+        grid-template-columns: 80px 1fr auto;
+        gap: 10px;
+        padding: 10px;
+      }
+      .cart-item-image { width: 80px; height: 80px; }
+      .cart-item-title { font-size: 9px; }
+      .cart-item-price { font-size: 20px; }
+      .summary-row { font-size: 16px; }
+      .payment-button { font-size: 10px; padding: 10px; }
+      .retro-submit { font-size: 9px; }
+      .retro-label { font-size: 8px; }
+      .retro-input { font-size: 16px; }
+    }
+
     @media (max-width: 480px) {
       .cart-item {
         grid-template-columns: 1fr;
@@ -238,6 +257,10 @@
         margin: 0 auto;
       }
       .remove-btn { width: 100%; }
+      .cart-item-title { font-size: 8px; }
+      .cart-item-price { font-size: 18px; }
+      .summary-row.total { font-size: 12px; }
+      .payment-button { font-size: 9px; }
     }
   </style>
 </head>
@@ -397,6 +420,7 @@
   </footer>
 
   <script src="script/retro-effects.js"></script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');</script>
   <script>
     // Notification
     function showNotification() {
